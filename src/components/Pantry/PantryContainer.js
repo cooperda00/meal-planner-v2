@@ -4,11 +4,15 @@ import React, { Component } from "react";
 import Pantry from "./Pantry";
 //Redux
 import { connect } from "react-redux";
+import { compose } from "redux";
 import {
   addPantryItem,
   removePantryItem,
-  editPantryItem
+  editPantryItem,
+  editIngredientCheckbox
 } from "../../store/actions/pantryActions";
+//Firebase
+import { firestoreConnect } from "react-redux-firebase";
 
 class PantryContainer extends Component {
   //PANTRY CRUD OPERATIONS
@@ -17,20 +21,12 @@ class PantryContainer extends Component {
   };
 
   handleEditIngredient = (id, type, change) => {
-    const updatedIngredients = this.props.ingredients.map(ingredient => {
-      if (ingredient.id === id && type === "name") {
-        return { ...ingredient, name: change };
-      } else if (ingredient.id === id && type === "price") {
-        return { ...ingredient, price: change };
-      } else if (ingredient.id === id && type === "per") {
-        return { ...ingredient, per: change };
-      } else if (ingredient.id === id && type === "have") {
-        return { ...ingredient, have: !ingredient.have };
-      } else {
-        return ingredient;
-      }
-    });
-    this.props.editPantryItem(id, updatedIngredients);
+    const newData = { [type]: change };
+    this.props.editPantryItem(id, newData);
+  };
+
+  handleEditIngredientCheckbox = id => {
+    this.props.editIngredientCheckbox(id);
   };
 
   handleDeleteIngredient = id => {
@@ -40,10 +36,11 @@ class PantryContainer extends Component {
   render() {
     return (
       <Pantry
-        data={this.props}
+        ingredients={this.props.ingredients}
         handleAddIngredient={this.handleAddIngredient}
         handleDeleteIngredient={this.handleDeleteIngredient}
         handleEditIngredient={this.handleEditIngredient}
+        handleEditIngredientCheckbox={this.handleEditIngredientCheckbox}
       />
     );
   }
@@ -51,7 +48,7 @@ class PantryContainer extends Component {
 
 //STORE
 const mapStateToProps = state => {
-  const ingredients = state.pantry.pantry;
+  const ingredients = state.firestore.ordered.pantry;
   return {
     ingredients
   };
@@ -67,11 +64,17 @@ const mapDispatchToProps = dispatch => {
     },
     editPantryItem: (id, newItem) => {
       dispatch(editPantryItem(id, newItem));
+    },
+    editIngredientCheckbox: id => {
+      dispatch(editIngredientCheckbox(id));
     }
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect([{ collection: "pantry" }])
 )(PantryContainer);

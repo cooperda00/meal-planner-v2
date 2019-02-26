@@ -1,66 +1,30 @@
-import uuid4 from "uuid";
-
 const initState = {
-  pantry: [
-    {
-      have: false,
-      name: "Rice",
-      per: "cup",
-      price: 10,
-      id: uuid4()
-    },
-
-    {
-      have: true,
-      name: "bread",
-      per: "slice",
-      price: 15,
-      id: uuid4()
-    },
-
-    {
-      have: false,
-      name: "Syrup",
-      per: "tbsp",
-      price: 5,
-      id: uuid4()
-    }
-  ]
+  pantry: []
 };
 
 const pantryReducer = (state = initState, action) => {
   switch (action.type) {
     case "CREATE_PANTRY_ITEM":
-      return {
-        ...state,
-        pantry: [
-          ...state.pantry,
-          {
-            have: false,
-            name: "...",
-            per: "...",
-            price: 0,
-            id: uuid4()
-          }
-        ]
-      };
-
-    case "REMOVE_PANTRY_ITEM":
-      const newPantry = state.pantry.filter(item => item.id !== action.id);
-      return {
-        ...state,
-        pantry: [...newPantry]
-      };
-
-    case "EDIT_PANTRY_ITEM":
-      return {
-        ...state,
-        pantry: [...action.newItem]
-      };
-
+      console.log("New item added");
+      return state;
     case "CREATE_PANTRY_ITEM_ERROR":
-      console.log("create pantry item error", action.err);
-      break;
+      console.log("Creat item error", action.err);
+      return state;
+    case "REMOVE_PANTRY_ITEM":
+      console.log(`Pantry item ${action.id} successfully removed`);
+      return state;
+    case "REMOVE_PANTRY_ITEM_ERROR":
+      console.log(`Remove item ${action.id} error`, action.err);
+      return state;
+    case "EDIT_PANTRY_ITEM":
+      console.log(`Pantry item ${action.id} updated successfully`);
+      return state;
+    case "EDIT_PANTRY_ITEM_HAVE":
+      console.log(`Pantry item ${action.id} updated successfully`);
+      return state;
+    case "EDIT_PANTRY_ITEM_ERROR":
+      console.log(`Pantry item ${action.id} update err`, action.err);
+      return state;
     default:
       return state;
   }

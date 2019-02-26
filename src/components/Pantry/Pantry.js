@@ -11,29 +11,32 @@ const Pantry = props => {
   const {
     handleAddIngredient,
     handleDeleteIngredient,
-    handleEditIngredient
+    handleEditIngredient,
+    handleEditIngredientCheckbox
   } = props;
-  const ingredients = props.data.ingredients;
+  const ingredients = props.ingredients;
 
   const pantryContainer = () => {
-    return ingredients.length > 0 ? (
+    return ingredients ? (
       <div className={styles.PantryItemContainer}>
-        {ingredients.map(ing => {
-          return (
-            <PantryItem
-              key={ing.id}
-              ing={ing}
-              editIngredient={handleEditIngredient}
-              deleteIngredient={handleDeleteIngredient}
-            />
-          );
-        })}
+        {ingredients
+          .sort((a, b) => a.timeStamp - b.timeStamp)
+          .map(ing => {
+            return (
+              <PantryItem
+                key={ing.id}
+                ing={ing}
+                editIngredient={handleEditIngredient}
+                deleteIngredient={handleDeleteIngredient}
+                editIngredientCheckbox={handleEditIngredientCheckbox}
+              />
+            );
+          })}
       </div>
     ) : (
       <Spinner />
     );
   };
-
   return (
     <div className={styles.PantryViewContainer}>
       <div className={styles.TitleAndBtnContainer}>

@@ -3,11 +3,20 @@ import React from "react";
 //Styles
 import styles from "./PantryItem.module.scss";
 
-export default function PantryItem({ editIngredient, deleteIngredient, ing }) {
+export default function PantryItem({
+  editIngredient,
+  editIngredientCheckbox,
+  deleteIngredient,
+  ing
+}) {
   const { name, price, per, have, id } = ing;
 
   const handleEditIngredient = e => {
-    editIngredient(id, e.target.id, e.target.value);
+    editIngredient(id, e.target.id, e.target.value, e.target.checked);
+  };
+
+  const handleEditIngredientCheckbox = e => {
+    editIngredientCheckbox(id);
   };
 
   const handleDelete = () => {
@@ -43,7 +52,7 @@ export default function PantryItem({ editIngredient, deleteIngredient, ing }) {
         id="have"
         type="checkbox"
         checked={have}
-        onChange={handleEditIngredient}
+        onChange={handleEditIngredientCheckbox}
         className={styles.PantryItemSmall}
       />
       <button className={styles.PantryItemDeleteBtn} onClick={handleDelete}>
