@@ -1,0 +1,46 @@
+.Container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.Add {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
+  transition: 1s;
+  background: #ef5350;
+}
+
+.Add:hover {
+  border-radius: 0;
+}
+
+.CrossContainer {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Horizontal {
+  position: relative;
+  background: black;
+  border-radius: 50%;
+  width: 25px;
+  height: 2px;
+}
+
+.Vertical {
+  position: absolute;
+  background: black;
+  border-radius: 50%;
+  width: 2px;
+  height: 25px;
+}
