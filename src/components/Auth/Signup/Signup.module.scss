@@ -1,0 +1,25 @@
+.SignupContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+}
+
+.FormContainer {
+  width: 300px;
+
+  input {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}
+
+button {
+  margin-top: 0.5rem;
+  padding: 5px 10px;
+}

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PantryContainer from "../components/Pantry/PantryContainer";
 import Header from "../components/Header/Header";
 import Login from "../components/Auth/Login/Login";
+import Signup from "../components/Auth/Signup/Signup";
 //CSS
 import styles from "./AppRouter.module.scss";
 import "../base.css";
@@ -17,6 +18,7 @@ const AppRouter = () => (
         <Route path="/" component={PantryContainer} exact={true} />
         <Route path="/pantry" component={PantryContainer} />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
       </Switch>
     </div>
   </BrowserRouter>
