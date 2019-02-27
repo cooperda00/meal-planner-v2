@@ -25,15 +25,19 @@ const store = createStore(
         })
       ),
       reduxFirestore(fbConfig),
-      reactReduxFirebase(fbConfig)
+      reactReduxFirebase(fbConfig, {
+        attachAuthIsReady: true
+      })
     )
   )
 );
 
-const app = (
-  <Provider store={store}>
-    <AppRouter />
-  </Provider>
-);
-
-ReactDOM.render(app, document.getElementById("root"));
+//Wait for auth data before render
+store.firebaseAuthIsReady.then(() => {
+  const app = (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  );
+  ReactDOM.render(app, document.getElementById("root"));
+});

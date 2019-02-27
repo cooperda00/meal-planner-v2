@@ -16,6 +16,10 @@
   justify-content: space-around;
 }
 
+.Logout {
+  cursor: pointer;
+}
+
 // Specific Mobile
 @media only screen and (max-width: 411px) {
   .Header h1 {
