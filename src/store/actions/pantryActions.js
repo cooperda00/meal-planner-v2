@@ -1,9 +1,10 @@
-const addPantryItem = () => {
+const addPantryItem = id => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection("pantry")
       .add({
+        userId: id,
         have: false,
         name: "",
         per: "",

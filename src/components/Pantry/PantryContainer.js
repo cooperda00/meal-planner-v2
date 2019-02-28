@@ -15,9 +15,18 @@ import {
 import { firestoreConnect } from "react-redux-firebase";
 
 class PantryContainer extends Component {
+  state = {
+    ingredients: []
+  };
+  componentDidMount() {
+    setTimeout(() => {
+      console.log(this.props);
+    }, 5000);
+  }
   //PANTRY CRUD OPERATIONS
   handleAddIngredient = () => {
-    this.props.addPantryItem();
+    const id = this.props.auth.uid;
+    this.props.addPantryItem(id);
   };
 
   handleEditIngredient = (id, type, change) => {
@@ -50,14 +59,15 @@ class PantryContainer extends Component {
 const mapStateToProps = state => {
   const ingredients = state.firestore.ordered.pantry;
   return {
-    ingredients
+    ingredients,
+    auth: state.firebase.auth
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    addPantryItem: () => {
-      dispatch(addPantryItem());
+    addPantryItem: id => {
+      dispatch(addPantryItem(id));
     },
     removePantryItem: id => {
       dispatch(removePantryItem(id));
@@ -76,5 +86,5 @@ export default compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  firestoreConnect([{ collection: "pantry" }])
+  firestoreConnect(["pantry"])
 )(PantryContainer);

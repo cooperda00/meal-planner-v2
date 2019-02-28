@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
@@ -7,22 +7,10 @@ import { signOut } from "../../store/actions/authActions";
 function Header(props) {
   const { auth } = props;
 
-  const loggedInLinks = (
-    <>
-      <p className={styles.Logout} onClick={props.signOut}>
-        Logout
-      </p>
-      <NavLink activeClassName="is-active" to="/pantry">
-        Pantry
-      </NavLink>
-      <NavLink activeClassName="is-active" to="/planner">
-        Planner
-      </NavLink>
-      <NavLink activeClassName="is-active" to="/recipes">
-        Recipes
-      </NavLink>
-    </>
-  );
+  const handleLogout = () => {
+    props.signOut();
+    props.history.push("/");
+  };
 
   const loggedOutLinks = (
     <>
@@ -32,6 +20,23 @@ function Header(props) {
       <NavLink activeClassName="is-active" to="/signup">
         Signup
       </NavLink>
+    </>
+  );
+
+  const loggedInLinks = (
+    <>
+      <p className={styles.Logout} onClick={handleLogout}>
+        Logout
+      </p>
+      <NavLink activeClassName="is-active" to="/pantry">
+        Pantry
+      </NavLink>
+      {/* <NavLink activeClassName="is-active" to="/planner">
+        Planner
+      </NavLink>
+      <NavLink activeClassName="is-active" to="/recipes">
+        Recipes
+      </NavLink> */}
     </>
   );
   return (
@@ -56,7 +61,9 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Header)
+);

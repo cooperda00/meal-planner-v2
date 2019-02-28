@@ -1,11 +1,14 @@
 //Modules
 import React from "react";
+import { Redirect } from "react-router-dom";
 //CSS
 import styles from "./Pantry.module.scss";
 //Components
 import PantryItem from "./PantryItem/PantryItem";
 import Spinner from "../Spinner/Spinner";
 import PantryAddBtn from "./PantryAddBtn/PantryAddBtn";
+//Redux
+import { connect } from "react-redux";
 
 const Pantry = props => {
   const {
@@ -15,6 +18,10 @@ const Pantry = props => {
     handleEditIngredientCheckbox
   } = props;
   const ingredients = props.ingredients;
+
+  if (!props.auth.uid) {
+    return <Redirect to="/" />;
+  }
 
   const pantryContainer = () => {
     return ingredients ? (
@@ -48,4 +55,10 @@ const Pantry = props => {
   );
 };
 
-export default Pantry;
+const mapStateToProps = state => {
+  return {
+    auth: state.firebase.auth
+  };
+};
+
+export default connect(mapStateToProps)(Pantry);

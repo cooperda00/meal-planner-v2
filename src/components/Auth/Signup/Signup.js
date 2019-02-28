@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styles from "./Signup.module.scss";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { signUp } from "../../../store/actions/authActions";
 
 class Signup extends Component {
   state = {
@@ -18,12 +19,12 @@ class Signup extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.signUp(this.state);
   };
 
   render() {
     const { auth, authError } = this.props;
-    if (auth.uid) return <Redirect to="/" />;
+    if (auth.uid) return <Redirect to="/pantry" />;
     return (
       <div className={styles.SignupContainer}>
         <h1>Signup: </h1>
@@ -70,7 +71,11 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    signUp: data => {
+      dispatch(signUp(data));
+    }
+  };
 };
 
 export default connect(

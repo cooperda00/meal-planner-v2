@@ -26,7 +26,9 @@ const store = createStore(
       ),
       reduxFirestore(fbConfig),
       reactReduxFirebase(fbConfig, {
-        attachAuthIsReady: true
+        attachAuthIsReady: true,
+        useFirestoreForProfile: true,
+        userProfile: "users"
       })
     )
   )
