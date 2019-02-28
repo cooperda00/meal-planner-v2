@@ -1,0 +1,34 @@
+.CardContainer {
+  margin-top: 1rem;
+  max-width: 350px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 250px;
+  border: 1px solid #cbba83;
+  border-radius: 15px;
+  background: #ffecb3;
+  padding: 1rem;
+}
+
+.CardContainer img {
+  width: 80%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.RecipeCardTags {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Tag {
+  list-style: none;
+  background: #ef5350;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-weight: bold;
+}

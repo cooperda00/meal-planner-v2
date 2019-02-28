@@ -33,10 +33,10 @@ function Header(props) {
       </NavLink>
       {/* <NavLink activeClassName="is-active" to="/planner">
         Planner
-      </NavLink>
+      </NavLink> */}
       <NavLink activeClassName="is-active" to="/recipes">
         Recipes
-      </NavLink> */}
+      </NavLink>
     </>
   );
   return (

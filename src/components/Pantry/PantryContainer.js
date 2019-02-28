@@ -15,14 +15,6 @@ import {
 import { firestoreConnect } from "react-redux-firebase";
 
 class PantryContainer extends Component {
-  state = {
-    ingredients: []
-  };
-  componentDidMount() {
-    setTimeout(() => {
-      console.log(this.props);
-    }, 5000);
-  }
   //PANTRY CRUD OPERATIONS
   handleAddIngredient = () => {
     const id = this.props.auth.uid;
