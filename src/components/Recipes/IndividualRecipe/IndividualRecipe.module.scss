@@ -1,0 +1,77 @@
+.IndividualRecipeContainer {
+  padding: 2rem;
+  width: 100%;
+}
+
+.IndividualRecipeTitle {
+  color: green;
+}
+
+.IndividualRecipeImg {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 750px;
+}
+
+.TagsContainer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.TagsContainer ul {
+  margin-left: 2rem;
+  display: flex;
+}
+
+.TagsContainer ul li {
+  padding: 7px;
+  border-radius: 15px;
+  background: lightcoral;
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.IngredientsContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.IngredientsContainer li {
+  list-style-type: disc;
+  margin-left: 3rem;
+
+  span {
+    margin-left: 2rem;
+  }
+
+  input {
+    margin-left: 2rem;
+  }
+}
+
+.DirectionsContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.DirectionsContainer li {
+  margin-left: 3rem;
+}
+
+.ApproxPrice {
+  margin-top: 1rem;
+
+  span {
+    font-weight: 400;
+  }
+}
+
+.Controls {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+}

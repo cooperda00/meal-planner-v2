@@ -22,4 +22,37 @@ const addRecipe = (id, payload) => {
   };
 };
 
-export { addRecipe };
+const changeFilter = filter => ({
+  type: "CHANGE_FILTER",
+  filter
+});
+
+const changeTagFilter = tagFilter => ({
+  type: "CHANGE_TAG_FILTER",
+  tagFilter
+});
+
+const deleteRecipe = id => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("recipes")
+      .doc(id)
+      .delete()
+      .then(() => {
+        dispatch({
+          type: "DELETE_RECIPE",
+          id
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "DELETE_RECIPE__ERR",
+          id,
+          err
+        });
+      });
+  };
+};
+
+export { addRecipe, changeFilter, changeTagFilter, deleteRecipe };
