@@ -1,4 +1,7 @@
 .IndividualRecipeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
   width: 100%;
 }
@@ -10,7 +13,7 @@
 .IndividualRecipeImg {
   margin-top: 1rem;
   width: 100%;
-  max-width: 750px;
+  max-width: 500px;
 }
 
 .TagsContainer {
@@ -74,4 +77,25 @@
   display: flex;
   justify-content: space-between;
   width: 30%;
+
+  button {
+    border: none;
+    cursor: pointer;
+  }
+
+  .Back {
+    background: goldenrod;
+  }
+
+  .Edit {
+    background: lightgreen;
+  }
+
+  .Delete {
+    background: coral;
+  }
+
+  .ConfirmDelete {
+    background: red;
+  }
 }

@@ -3,6 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
+import UserLogo from "./UserLogo/UserLogo";
 
 function Header(props) {
   const { auth } = props;
@@ -25,15 +26,15 @@ function Header(props) {
 
   const loggedInLinks = (
     <>
-      <p className={styles.Logout} onClick={handleLogout}>
+      <a className={styles.Logout} onClick={handleLogout}>
         Logout
-      </p>
+      </a>
       <NavLink activeClassName="is-active" to="/pantry">
         Pantry
       </NavLink>
-      {/* <NavLink activeClassName="is-active" to="/planner">
+      <NavLink activeClassName="is-active" to="/planner">
         Planner
-      </NavLink> */}
+      </NavLink>
       <NavLink activeClassName="is-active" to="/recipes">
         Recipes
       </NavLink>
@@ -45,6 +46,7 @@ function Header(props) {
       <div className={styles.NavContainer}>
         {auth.uid ? loggedInLinks : loggedOutLinks}
       </div>
+      {auth.uid && <UserLogo />}
     </div>
   );
 }

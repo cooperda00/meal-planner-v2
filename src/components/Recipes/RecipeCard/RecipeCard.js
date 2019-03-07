@@ -15,11 +15,7 @@ export default function RecipeCard(props) {
 
       <ul className={styles.RecipeCardTags}>
         {props.tags.map(tag => {
-          return (
-            <li key={uuid4()} className={styles.Tag}>
-              {tag}
-            </li>
-          );
+          return <li key={uuid4()}>{tag}</li>;
         })}
       </ul>
     </div>

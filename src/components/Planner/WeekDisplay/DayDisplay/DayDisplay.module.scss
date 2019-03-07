@@ -1,0 +1,23 @@
+.DayDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid black;
+}
+
+.TopLine {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}
+
+.BottomLine {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+}

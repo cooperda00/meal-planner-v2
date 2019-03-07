@@ -5,6 +5,8 @@ import styles from "./Login.module.scss";
 //Redux
 import { connect } from "react-redux";
 import { signIn } from "../../../store/actions/authActions";
+//Components
+import Spinner from "../../Spinner/Spinner";
 
 class Login extends Component {
   state = {
@@ -25,46 +27,52 @@ class Login extends Component {
 
   render() {
     const { authError, auth } = this.props;
-
+    //Route Blocker
     if (auth.uid) {
       return <Redirect to="/pantry" />;
     }
 
-    return (
-      <div className={styles.LoginContainer}>
-        <h1>Login: </h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className={styles.FormContainer}>
-            <label htmlFor="email">
-              Email:
-              <input id="email" type="email" onChange={this.handleChange} />
-            </label>
-          </div>
+    if (this.props.isFetching) {
+      return <Spinner />;
+    } else {
+      return (
+        <div className={styles.LoginContainer}>
+          <h1>Login: </h1>
+          <form onSubmit={this.handleSubmit}>
+            <div className={styles.FormContainer}>
+              <label htmlFor="email">
+                Email:
+                <input id="email" type="email" onChange={this.handleChange} />
+              </label>
+            </div>
 
-          <div className={styles.FormContainer}>
-            <label htmlFor="password">
-              Password:
-              <input
-                id="password"
-                type="password"
-                onChange={this.handleChange}
-              />
-            </label>
-          </div>
+            <div className={styles.FormContainer}>
+              <label htmlFor="password">
+                Password:
+                <input
+                  id="password"
+                  type="password"
+                  onChange={this.handleChange}
+                />
+              </label>
+            </div>
 
-          {authError && <p>{authError}</p>}
+            {authError && <p>{authError}</p>}
 
-          <button>Submit</button>
-        </form>
-      </div>
-    );
+            <button>Submit</button>
+          </form>
+        </div>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => {
+  console.log(state.auth);
   return {
     authError: state.auth.authError,
-    auth: state.firebase.auth
+    auth: state.firebase.auth,
+    isFetching: state.auth.isFetching
   };
 };
 

@@ -4,7 +4,10 @@ import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 import Recipes from "./Recipes";
 import { Redirect } from "react-router-dom";
-import { changeTagFilter } from "../../store/actions/recipesActions";
+import {
+  changeTagFilter,
+  changeFilter
+} from "../../store/actions/recipesActions";
 
 class RecipesContainer extends Component {
   state = {
@@ -31,6 +34,11 @@ class RecipesContainer extends Component {
     this.props.changeTagFilter("All");
   }
 
+  //Reset filters on unmount
+  componentWillUnmount() {
+    this.props.changeFilter("");
+  }
+
   render() {
     if (!this.props.uid) {
       return <Redirect to="/" />;
@@ -50,6 +58,9 @@ const mapDispatchToProps = dispatch => {
   return {
     changeTagFilter: tagFilter => {
       dispatch(changeTagFilter(tagFilter));
+    },
+    changeFilter: filter => {
+      dispatch(changeFilter(filter));
     }
   };
 };

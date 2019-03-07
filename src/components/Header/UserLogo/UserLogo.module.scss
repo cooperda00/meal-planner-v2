@@ -1,0 +1,15 @@
+.UserLogo {
+  height: 50px;
+  width: 50px;
+  background-color: #ef5350;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    font-weight: bold;
+    letter-spacing: 4px;
+  }
+}

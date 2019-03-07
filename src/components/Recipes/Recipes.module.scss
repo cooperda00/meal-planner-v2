@@ -34,3 +34,21 @@
 }
 
 //Tablet
+@media only screen and (min-width: 750px) {
+  .RecipesGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+//Desktop
+@media only screen and (min-width: 1000px) {
+  .RecipesGrid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .RecipesGrid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}

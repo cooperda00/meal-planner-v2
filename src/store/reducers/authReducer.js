@@ -1,5 +1,6 @@
 const initState = {
-  authError: null
+  authError: null,
+  isFetching: false
 };
 
 const authReducer = (state = initState, action) => {
@@ -9,13 +10,22 @@ const authReducer = (state = initState, action) => {
       console.log("Login Success");
       return {
         ...state,
-        authError: null
+        authError: null,
+        isFetching: action.isFetching
+      };
+    case "LOGIN_ATTEMPT":
+      console.log("...Fetching");
+      return {
+        ...state,
+        authError: null,
+        isFetching: action.isFetching
       };
     case "LOGIN_ERROR":
       console.log("Login Error");
       return {
         ...state,
-        authError: "Login Failed"
+        authError: "Login Failed",
+        isFetching: action.isFetching
       };
 
     // SIGNOUT ----------------------------
@@ -31,13 +41,22 @@ const authReducer = (state = initState, action) => {
       console.log("Signup Success");
       return {
         ...state,
-        authError: null
+        authError: null,
+        isFetching: action.isFetching
+      };
+    case "SIGNUP_ATTEMPT":
+      console.log("...Fetching");
+      return {
+        ...state,
+        authError: null,
+        isFetching: action.isFetching
       };
     case "SIGNUP_ERROR":
       console.log("Signup error", action.err);
       return {
         ...state,
-        authError: action.err.message
+        authError: action.err.message,
+        isFetching: action.isFetching
       };
 
     default:

@@ -1,9 +1,18 @@
+//Modules
 import React, { Component } from "react";
-import styles from "./AddRecipe.module.scss";
-import uuid4 from "uuid";
 import { withRouter, Redirect } from "react-router-dom";
+//Redux
 import { connect } from "react-redux";
 import { addRecipe } from "../../../store/actions/recipesActions";
+//CSS
+import styles from "./AddRecipe.module.scss";
+//Components
+import NameForm from "./NameForm/NameForm";
+import ImgUrlForm from "./ImgUrlForm/ImgUrlForm";
+import TagsForm from "./TagsForm/TagsForm";
+import IngredientsForm from "./IngredientsForm/IngredientsForm";
+import InstructionsForm from "./InstructionsForm/InstructionsForm";
+import Controls from "./Controls/Controls";
 
 class AddRecipe extends Component {
   state = {
@@ -20,14 +29,36 @@ class AddRecipe extends Component {
       amount: 0,
       type: ""
     },
-    instructionToAdd: ""
+    instructionToAdd: "",
+    warningMessage: ""
   };
 
   handleSubmit = () => {
     const id = this.props.uid;
     const payload = this.state.recipe;
-    this.props.addRecipe(id, payload);
-    this.props.history.push("/recipes");
+    if (
+      payload.tags.length > 0 &&
+      payload.ingredients.length > 0 &&
+      payload.instructions.length > 0 &&
+      payload.name
+    ) {
+      this.props.addRecipe(id, payload);
+      //Reset State
+      this.setState({
+        recipe: {
+          tags: [],
+          ingredients: [],
+          instructions: [],
+          name: "",
+          imgUrl: ""
+        }
+      });
+      this.props.history.push("/recipes");
+    } else {
+      this.setState({
+        warningMessage: "Please fill out fields. Only image is optional."
+      });
+    }
   };
 
   handleNameChange = e => {
@@ -128,7 +159,41 @@ class AddRecipe extends Component {
     this.props.history.push("/recipes");
   };
 
+  //REMOVE BULLETS FROM STATE
+  handleRemove = (type, name) => {
+    if (type === "tag") {
+      const filteredTags = this.state.recipe.tags.filter(tag => tag !== name);
+      this.setState({
+        recipe: {
+          ...this.state.recipe,
+          tags: filteredTags
+        }
+      });
+    } else if (type === "ins") {
+      const filteredInstructions = this.state.recipe.instructions.filter(
+        ins => ins !== name
+      );
+      this.setState({
+        recipe: {
+          ...this.state.recipe,
+          instructions: filteredInstructions
+        }
+      });
+    } else if (type === "ing") {
+      const filteredIngredients = this.state.recipe.ingredients.filter(
+        ing => ing.name !== name
+      );
+      this.setState({
+        recipe: {
+          ...this.state.recipe,
+          ingredients: filteredIngredients
+        }
+      });
+    }
+  };
+
   render() {
+    //Route Blocker
     if (!this.props.uid) {
       return <Redirect to="/" />;
     }
@@ -136,129 +201,56 @@ class AddRecipe extends Component {
     return (
       <div className={styles.AddRecipeContainer}>
         <h1>Add Recipe</h1>
-        {/* NAME */}
-        <h3>Recipe Name:</h3>
-        <input
-          className={styles.AddRecipeTitle}
-          type="text"
+        <NameForm
           value={this.state.recipe.name}
-          onChange={this.handleNameChange}
-          required
+          handleNameChange={this.handleNameChange}
         />
-        {/* IMG URL */}
-        <h3>Recipe Image URL</h3>
-        <input
-          type="text"
-          className={styles.AddRecipeImage}
+        <ImgUrlForm
           value={this.state.recipe.imgUrl}
-          onChange={this.handleImgUrlChange}
+          handleImgUrlChange={this.handleImgUrlChange}
         />
-        {/* TAGS: DISPLAY */}
-        <div className={styles.AddTagsContainer}>
-          <h3>Tags:</h3>
-          <ul>
-            {this.state.recipe.tags.map(tag => (
-              <li key={uuid4()}>{tag}</li>
-            ))}
-          </ul>
-          {/* TAGS: ADD */}
-          <form onSubmit={this.handleAddTag}>
-            <input
-              type="text"
-              name="tag"
-              value={this.state.tagtoAdd}
-              onChange={this.handleChangeToAdd}
-              required
-            />
-            <input type="submit" value="+" />
-          </form>
-        </div>
-        {/* INGREDIENT: SHOW */}
-        <div className={styles.AddIngredientsContainer}>
-          <h3>Ingredients:</h3>
-          <ul>
-            {this.state.recipe.ingredients.map(ing => (
-              <li key={uuid4()}>
-                {ing.name}{" "}
-                <span>
-                  {ing.amount} {ing.type}
-                </span>
-              </li>
-            ))}
-          </ul>
-          {/* INGREDIENT: ADD */}
-          <form onSubmit={this.handleAddIngredient}>
-            <input
-              type="text"
-              name="name"
-              value={this.state.ingredientToAdd[0]}
-              onChange={this.handleChangeIngredientToAdd}
-              required
-            />
-            <input
-              className={styles.Num}
-              type="number"
-              name="amount"
-              value={this.state.ingredientToAdd[1]}
-              onChange={this.handleChangeIngredientToAdd}
-              required
-            />
-            <input
-              className={styles.Type}
-              type="text"
-              name="type"
-              value={this.state.ingredientToAdd[2]}
-              onChange={this.handleChangeIngredientToAdd}
-            />
-            <input type="submit" value="+" />
-          </form>
-        </div>
-        {/* INSTRUCTIONS: SHOW */}
-        <div className={styles.AddInstructionsContainer}>
-          <h3>Instructions:</h3>
-          <ol>
-            {this.state.recipe.instructions.map(ins => (
-              <li key={uuid4()}>{ins}</li>
-            ))}
-          </ol>
-          {/* INSTRUCTIONS: ADD */}
-          <form onSubmit={this.handleAddInstruction}>
-            <textarea
-              name="instruction"
-              value={this.state.instructionToAdd}
-              onChange={this.handleChangeInstructionToAdd}
-              required
-            />
-            <input type="submit" value="+" />
-          </form>
-        </div>
-        <div className={styles.Controls}>
-          <button className={styles.Save} onClick={this.handleSubmit}>
-            Save
-          </button>
-          <button onClick={this.handleGoBack} className={styles.Back}>
-            Back
-          </button>
-        </div>
+        <TagsForm
+          tags={this.state.recipe.tags}
+          handleAddTag={this.handleAddTag}
+          value={this.state.tagtoAdd}
+          handleChangeToAdd={this.handleChangeToAdd}
+          handleRemove={this.handleRemove}
+        />
+        <IngredientsForm
+          ingredients={this.state.recipe.ingredients}
+          handleAddIngredient={this.handleAddIngredient}
+          value1={this.state.ingredientToAdd[0]}
+          value2={this.state.ingredientToAdd[1]}
+          value3={this.state.ingredientToAdd[2]}
+          handleChangeIngredientToAdd={this.handleChangeIngredientToAdd}
+          handleRemove={this.handleRemove}
+        />
+        <InstructionsForm
+          instructions={this.state.recipe.instructions}
+          handleAddInstruction={this.handleAddInstruction}
+          value={this.state.instructionToAdd}
+          handleChangeInstructionToAdd={this.handleChangeInstructionToAdd}
+          handleRemove={this.handleRemove}
+        />
+        <Controls
+          handleSubmit={this.handleSubmit}
+          handleGoBack={this.handleGoBack}
+        />
+        <p>{this.state.warningMessage}</p>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addRecipe: (id, payload) => {
-      dispatch(addRecipe(id, payload));
-    }
-  };
-};
-
-const mapStateToProps = state => {
-  return {
-    uid: state.firebase.auth.uid
-  };
-};
-
+//Redux
+const mapDispatchToProps = dispatch => ({
+  addRecipe: (id, payload) => {
+    dispatch(addRecipe(id, payload));
+  }
+});
+const mapStateToProps = state => ({
+  uid: state.firebase.auth.uid
+});
 export default withRouter(
   connect(
     mapStateToProps,

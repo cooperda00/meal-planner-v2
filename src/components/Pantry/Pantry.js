@@ -17,7 +17,11 @@ const Pantry = props => {
     handleEditIngredient,
     handleEditIngredientCheckbox
   } = props;
-  const ingredients = props.ingredients;
+
+  let ingredients = [];
+  if (props.ingredients) {
+    ingredients = [...props.ingredients];
+  }
 
   if (!props.auth.uid) {
     return <Redirect to="/" />;

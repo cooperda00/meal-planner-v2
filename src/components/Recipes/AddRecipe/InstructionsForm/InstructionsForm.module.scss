@@ -1,0 +1,26 @@
+.AddInstructionsContainer {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    text-align: center;
+  }
+
+  input {
+    height: 2rem;
+  }
+
+  .TextInput {
+    width: 300px;
+  }
+}
+
+.removeBtn {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: red;
+}

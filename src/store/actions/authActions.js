@@ -1,16 +1,18 @@
 export const signIn = credentials => {
   return (dispatch, getState, { getFirebase }) => {
+    dispatch({ type: "LOGIN_ATTEMPT", isFetching: true });
     const firebase = getFirebase();
     firebase
       .auth()
       .signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(() => {
-        dispatch({ type: "LOGIN_SUCCESS" });
+        dispatch({ type: "LOGIN_SUCCESS", isFetching: false });
       })
       .catch(err => {
         dispatch({
           type: "LOGIN_ERROR",
-          err
+          err,
+          isFetching: false
         });
       });
   };
@@ -36,6 +38,7 @@ export const signOut = () => {
 
 export const signUp = newUser => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    dispatch({ type: "SIGNUP_ATTEMPT", isFetching: true });
     const firebase = getFirebase();
     const firestore = getFirestore();
     firebase
@@ -50,13 +53,30 @@ export const signUp = newUser => {
             initials: newUser.initials
           });
       })
+      //Add dummy instruction datum to the pantry to guide users initially
       .then(() => {
-        dispatch({ type: "SIGNUP_SUCCESS" });
+        const state = getState();
+        return state.firebase.auth.uid;
+      })
+      .then(res => {
+        console.log(res);
+        firestore.collection("pantry").add({
+          userId: res,
+          have: true,
+          name: "i.e. Apples",
+          per: "i.e. pack",
+          price: 15,
+          timeStamp: new Date().getTime()
+        });
+      })
+      .then(() => {
+        dispatch({ type: "SIGNUP_SUCCESS", isFetching: false });
       })
       .catch(err => {
         dispatch({
           type: "SIGNUP_ERROR",
-          err
+          err,
+          isFetching: false
         });
       });
   };

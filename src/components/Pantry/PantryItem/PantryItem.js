@@ -41,6 +41,8 @@ function PantryItem({
         <input
           id="price"
           type="number"
+          min="0"
+          step="0.01"
           value={price}
           onChange={handleEditIngredient}
           className={styles.PantryItemSmall}

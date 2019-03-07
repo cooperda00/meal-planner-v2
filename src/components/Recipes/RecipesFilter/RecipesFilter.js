@@ -11,7 +11,7 @@ function RecipesFilter(props) {
   return (
     <div className={styles.RecipeFilterContainer}>
       <label>
-        Filter:
+        Search by name:
         <input
           type="text"
           className={styles.FilterInput}

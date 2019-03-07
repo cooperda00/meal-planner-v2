@@ -47,7 +47,7 @@ const deleteRecipe = id => {
       })
       .catch(err => {
         dispatch({
-          type: "DELETE_RECIPE__ERR",
+          type: "DELETE_RECIPE__ERROR",
           id,
           err
         });
@@ -55,4 +55,27 @@ const deleteRecipe = id => {
   };
 };
 
-export { addRecipe, changeFilter, changeTagFilter, deleteRecipe };
+const updateRecipe = (id, updates) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("recipes")
+      .doc(id)
+      .update({ ...updates })
+      .then(() => {
+        dispatch({
+          type: "UPDATE_RECIPE",
+          id
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "UPDATE_RECIPE__ERROR",
+          id,
+          err
+        });
+      });
+  };
+};
+
+export { addRecipe, changeFilter, changeTagFilter, deleteRecipe, updateRecipe };
