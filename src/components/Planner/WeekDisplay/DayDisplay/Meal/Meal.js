@@ -15,7 +15,13 @@ export default function Meal(props) {
       <div className={styles.MealItem}>
         <p>{name}</p>
       </div>
-      <RemoveBtn />
+      <RemoveBtn
+        week={props.week}
+        day={props.day}
+        weekId={props.weekId}
+        name={name}
+        type={type}
+      />
     </div>
   );
 }

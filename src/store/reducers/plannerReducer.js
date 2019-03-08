@@ -16,6 +16,12 @@ const plannerReducer = (state = initState, action) => {
     case "ADD_MEAL_ERROR":
       console.log("Add meal error", action.err);
       return state;
+    case "REMOVE_MEAL":
+      console.log("Meal Removed");
+      return state;
+    case "REMOVE_MEAL_ERROR":
+      console.log("Remove meal error", action.err);
+      return state;
     // case "DELETE_RECIPE":
     //   console.log(`Recipe ${action.id} successfully removed`);
     //   return state;

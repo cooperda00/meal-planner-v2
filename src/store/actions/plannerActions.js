@@ -44,3 +44,26 @@ export const addMeal = (planId, payload) => {
       });
   };
 };
+
+export const removeMeal = (planId, payload) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("plans")
+      .doc(planId)
+      .update({
+        week: payload
+      })
+      .then(() => {
+        dispatch({
+          type: "REMOVE_MEAL"
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "REMOVE_MEAL_ERROR",
+          err
+        });
+      });
+  };
+};

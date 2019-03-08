@@ -60,7 +60,13 @@ export default class DayDisplay extends Component {
         <div className={styles.BottomLine}>
           {this.props.data.meals.map(meal => {
             return (
-              <Meal meal={meal} key={uuid4()} weekId={this.props.weekId} />
+              <Meal
+                meal={meal}
+                key={uuid4()}
+                weekId={this.props.weekId}
+                week={this.props.week}
+                day={this.props.data.day}
+              />
             );
           })}
         </div>
