@@ -12,7 +12,12 @@ export default class WeekDisplay extends Component {
         <div className={styles.WeekDisplay}>
           {this.props.plan.week.map(day => {
             return (
-              <DayDisplay data={day} key={this.props.plan.userId + day.day} />
+              <DayDisplay
+                data={day}
+                key={this.props.plan.userId + day.day}
+                weekId={this.props.plan.id}
+                week={this.props.plan.week}
+              />
             );
           })}
         </div>

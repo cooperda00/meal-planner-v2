@@ -5,11 +5,14 @@ import uuid4 from "uuid";
 import styles from "./DayDisplay.module.scss";
 //Components
 import AddMeal from "./AddMeal/AddMeal";
-import AddMealBtn from "./AddMealBtn/AddMealBtn";
 import Date from "./Date/Date";
 import Meal from "./Meal/Meal";
 
 export default class DayDisplay extends Component {
+  state = {
+    showAddMeal: false
+  };
+
   getDay = num => {
     switch (num) {
       case 1:
@@ -31,17 +34,34 @@ export default class DayDisplay extends Component {
     }
   };
 
+  showAddMeal = () => {
+    this.setState(prevState => {
+      return { showAddMeal: !prevState.showAddMeal };
+    });
+  };
+
   render() {
     return (
       <div className={styles.DayDisplay}>
         <div className={styles.TopLine}>
           <Date day={this.getDay(this.props.data.day)} />
-          {/* <AddMeal /> */}
-          <AddMealBtn />
+          <button onClick={this.showAddMeal} className={styles.ShowAddMealBtn}>
+            +
+          </button>
+          {this.state.showAddMeal && (
+            <AddMeal
+              showAddMeal={this.showAddMeal}
+              week={this.props.week}
+              day={this.props.data.day}
+              weekId={this.props.weekId}
+            />
+          )}
         </div>
         <div className={styles.BottomLine}>
           {this.props.data.meals.map(meal => {
-            return <Meal meal={meal} key={uuid4()} />;
+            return (
+              <Meal meal={meal} key={uuid4()} weekId={this.props.weekId} />
+            );
           })}
         </div>
       </div>

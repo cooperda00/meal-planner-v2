@@ -1,13 +1,13 @@
 export const addPlan = (userId, payload) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
-    firestore
-      .collection("plans")
-      .add({
-        userId: userId,
-        timeStamp: new Date().getTime(),
-        ...payload
-      })
+    const db = firestore.collection("plans").doc();
+    db.set({
+      id: db.id,
+      userId: userId,
+      timeStamp: new Date().getTime(),
+      ...payload
+    })
       .then(() => {
         dispatch({
           type: "CREATE_PLAN"
@@ -16,6 +16,29 @@ export const addPlan = (userId, payload) => {
       .catch(err => {
         dispatch({
           type: "CREATE_PLAN_ERROR",
+          err
+        });
+      });
+  };
+};
+
+export const addMeal = (planId, payload) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("plans")
+      .doc(planId)
+      .update({
+        week: payload
+      })
+      .then(() => {
+        dispatch({
+          type: "ADD_MEAL"
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "ADD_MEAL_ERROR",
           err
         });
       });

@@ -14,6 +14,15 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem 1rem;
+  position: relative;
+}
+
+.ShowAddMealBtn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
 }
 
 .BottomLine {
