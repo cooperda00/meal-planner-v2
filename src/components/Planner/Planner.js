@@ -3,14 +3,18 @@ import React from "react";
 //CSS
 import styles from "./Planner.module.scss";
 //Components
-import Calendar from "./Calendar/Calendar";
 import WeekDisplay from "./WeekDisplay/WeekDisplay";
+import AddNewWeek from "./AddNewWeek/AddNewWeek";
 
-export default function Planner() {
+export default function Planner(props) {
+  let mostRecentPlan = <p>Loading</p>;
+  if (props.plans) {
+    mostRecentPlan = <WeekDisplay plan={props.plans[0]} />;
+  }
   return (
     <div>
-      <Calendar />
-      <WeekDisplay />
+      <AddNewWeek />
+      {mostRecentPlan}
     </div>
   );
 }

@@ -7,10 +7,18 @@ import DayDisplay from "./DayDisplay/DayDisplay";
 
 export default class WeekDisplay extends Component {
   render() {
-    return (
-      <div className={styles.WeekDisplay}>
-        <DayDisplay />
-      </div>
-    );
+    if (this.props.plan) {
+      return (
+        <div className={styles.WeekDisplay}>
+          {this.props.plan.week.map(day => {
+            return (
+              <DayDisplay data={day} key={this.props.plan.userId + day.day} />
+            );
+          })}
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 }

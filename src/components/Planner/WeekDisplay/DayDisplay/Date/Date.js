@@ -3,10 +3,10 @@ import React from "react";
 //CSS
 import styles from "./Date.module.scss";
 
-export default function Date() {
+export default function Date({ day }) {
   return (
     <div>
-      <p>March 06 - Wednesday</p>
+      <h2>{day}</h2>
     </div>
   );
 }

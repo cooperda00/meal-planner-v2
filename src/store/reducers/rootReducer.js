@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 import pantryReducer from "./pantryReducer";
 import authReducer from "./authReducer";
 import recipesReducer from "./recipesReducer";
+import plannerReducer from "./plannerReducer";
 //Firebase
 import { firestoreReducer } from "redux-firestore";
 import { firebaseReducer } from "react-redux-firebase";
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   pantry: pantryReducer,
   recipes: recipesReducer,
   firestore: firestoreReducer,
-  firebase: firebaseReducer
+  firebase: firebaseReducer,
+  planner: plannerReducer
 });
 
 export default rootReducer;
