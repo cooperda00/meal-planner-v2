@@ -1,5 +1,6 @@
 const initState = {
-  plans: []
+  plans: [],
+  selectedPlan: ""
 };
 
 const plannerReducer = (state = initState, action) => {
@@ -22,19 +23,30 @@ const plannerReducer = (state = initState, action) => {
     case "REMOVE_MEAL_ERROR":
       console.log("Remove meal error", action.err);
       return state;
-    // case "DELETE_RECIPE":
-    //   console.log(`Recipe ${action.id} successfully removed`);
-    //   return state;
-    // case "DELETE_RECIPE_ERROR":
-    //   console.log(`Remove recipe ${action.id} error`, action.err);
-    //   return state;
-    // case "UPDATE_RECIPE":
-    //   console.log(`Recipe ${action.id} updated successfully`);
-    //   return state;
-    // case "UPDATE_RECIPE_ERROR":
-    //   console.log(`Recipe ${action.id} update err`, action.err);
-    //   return state;
+    case "CHANGE_SELECTED_PLAN":
+      console.log(`Changed selected plan to ${action.planId}`);
+      return {
+        ...state,
+        selectedPlan: action.planId
+      };
+    case "SET_DEFAULT_PLAN":
+      console.log("Default plan added");
+      return {
+        ...state,
+        selectedPlan: action.planId
+      };
+    case "SET_DEFAULT_PLAN_ERROR":
+      console.log("Set default plan error", action.err);
+      return state;
+    case "DELETE_PLAN":
+      console.log("Plan Removed");
+      return state;
+    case "DELETE_PLAN_ERROR":
+      console.log("Delete plan error", action.err);
+      return state;
     default:
       return state;
   }
 };
+
+export default plannerReducer;

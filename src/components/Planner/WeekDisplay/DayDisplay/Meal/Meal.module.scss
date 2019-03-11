@@ -1,6 +1,7 @@
 .Meal {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .MealItem {
@@ -9,4 +10,25 @@
   border-right: 1px solid lightgray;
   height: 50px;
   padding-right: 3rem;
+
+  p {
+    color: navy;
+    font-size: 1.5rem;
+  }
+}
+
+.Breakfast {
+  background: yellow;
+}
+
+.Lunch {
+  background: lightgreen;
+}
+
+.Dinner {
+  background: lightcoral;
+}
+
+.Snack {
+  background: lightblue;
 }

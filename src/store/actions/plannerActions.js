@@ -67,3 +67,60 @@ export const removeMeal = (planId, payload) => {
       });
   };
 };
+
+export const setDefaultPlan = () => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("plans")
+      .orderBy("timeStamp", "desc")
+      .limit(1)
+      .get()
+      .then(res => {
+        let id = "";
+        res.forEach(doc => {
+          id = doc.id;
+        });
+        dispatch({
+          type: "SET_DEFAULT_PLAN",
+          planId: id
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "SET_DEFAULT_PLAN_ERROR",
+          err
+        });
+      });
+  };
+};
+
+export const changeSelectedPlan = planId => {
+  return dispatch => {
+    dispatch({
+      type: "CHANGE_SELECTED_PLAN",
+      planId
+    });
+  };
+};
+
+export const deletePlan = planId => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("plans")
+      .doc(planId)
+      .delete()
+      .then(() => {
+        dispatch({
+          type: "DELETE_PLAN"
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "DELETE_PLAN_ERROR",
+          err
+        });
+      });
+  };
+};

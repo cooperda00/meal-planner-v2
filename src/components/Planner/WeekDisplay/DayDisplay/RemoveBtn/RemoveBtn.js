@@ -11,18 +11,20 @@ function RemoveBtn(props) {
     const week = JSON.parse(JSON.stringify(props.week));
     const day = props.day - 1;
     const filteredDay = week[day].meals.filter(meal => {
-      if (props.name !== meal.name && props.type !== meal.type) {
+      if (props.name === meal.name && props.type === meal.type) {
+        return false;
+      } else {
         return true;
       }
     });
     week[day].meals = filteredDay;
     props.removeMeal(props.weekId, week);
-    console.log(week);
   };
   return (
-    <div>
-      <p onClick={handleRemove}> - </p>
-    </div>
+    <button onClick={handleRemove} className={styles.RemoveBtn}>
+      {" "}
+      -{" "}
+    </button>
   );
 }
 
