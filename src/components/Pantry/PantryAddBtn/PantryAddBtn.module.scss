@@ -5,6 +5,10 @@
   margin-top: 1rem;
 }
 
+.Container:focus {
+  outline: 5px auto rgba(0, 150, 255, 1);
+}
+
 .Add {
   height: 50px;
   width: 50px;

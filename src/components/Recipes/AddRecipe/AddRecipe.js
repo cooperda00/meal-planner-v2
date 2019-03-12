@@ -13,6 +13,7 @@ import TagsForm from "./TagsForm/TagsForm";
 import IngredientsForm from "./IngredientsForm/IngredientsForm";
 import InstructionsForm from "./InstructionsForm/InstructionsForm";
 import Controls from "./Controls/Controls";
+import SourceForm from "./SourceForm/SourceForm";
 
 class AddRecipe extends Component {
   state = {
@@ -50,13 +51,15 @@ class AddRecipe extends Component {
           ingredients: [],
           instructions: [],
           name: "",
-          imgUrl: ""
+          imgUrl: "",
+          source: ""
         }
       });
       this.props.history.push("/recipes");
     } else {
       this.setState({
-        warningMessage: "Please fill out fields. Only image is optional."
+        warningMessage:
+          "Please fill out fields. Only image and source are optional."
       });
     }
   };
@@ -66,6 +69,15 @@ class AddRecipe extends Component {
       recipe: {
         ...this.state.recipe,
         name: e.target.value
+      }
+    });
+  };
+
+  handleSourceChange = e => {
+    this.setState({
+      recipe: {
+        ...this.state.recipe,
+        source: e.target.value
       }
     });
   };
@@ -208,6 +220,10 @@ class AddRecipe extends Component {
         <ImgUrlForm
           value={this.state.recipe.imgUrl}
           handleImgUrlChange={this.handleImgUrlChange}
+        />
+        <SourceForm
+          value={this.state.recipe.source}
+          handleSourceChange={this.handleSourceChange}
         />
         <TagsForm
           tags={this.state.recipe.tags}

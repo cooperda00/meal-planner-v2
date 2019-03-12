@@ -13,6 +13,13 @@ function Header(props) {
     props.history.push("/");
   };
 
+  const handleLogoutKey = e => {
+    if (e.which === 13) {
+      props.signOut();
+      props.history.push("/");
+    }
+  };
+
   const loggedOutLinks = (
     <>
       <NavLink activeClassName="is-active" to="/login">
@@ -26,7 +33,12 @@ function Header(props) {
 
   const loggedInLinks = (
     <>
-      <a className={styles.Logout} onClick={handleLogout}>
+      <a
+        className={styles.Logout}
+        onClick={handleLogout}
+        onKeyPress={handleLogoutKey}
+        tabIndex="0"
+      >
         Logout
       </a>
       <NavLink activeClassName="is-active" to="/pantry">

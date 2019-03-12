@@ -15,6 +15,7 @@ import TagsForm from "./TagsForm/TagsForm";
 import IngredientsForm from "./IngredientsForm/IngredientsForm";
 import InstructionsForm from "./InstructionsForm/InstructionsForm";
 import Controls from "./Controls/Controls";
+import SourceForm from "./SourceForm/SourceForm";
 
 class EditRecipe extends Component {
   state = {
@@ -55,7 +56,8 @@ class EditRecipe extends Component {
         ingredients: recipe.ingredients,
         instructions: recipe.instructions,
         name: recipe.name,
-        imgUrl: recipe.imgUrl
+        imgUrl: recipe.imgUrl,
+        source: recipe.source
       },
       initialPopulate: false
     });
@@ -82,6 +84,15 @@ class EditRecipe extends Component {
       recipe: {
         ...this.state.recipe,
         name: e.target.value
+      }
+    });
+  };
+
+  handleSourceChange = e => {
+    this.setState({
+      recipe: {
+        ...this.state.recipe,
+        source: e.target.value
       }
     });
   };
@@ -224,6 +235,10 @@ class EditRecipe extends Component {
         <ImgUrlForm
           value={this.state.recipe.imgUrl}
           handleImgUrlChange={this.handleImgUrlChange}
+        />
+        <SourceForm
+          value={this.state.recipe.source}
+          handleSourceChange={this.handleSourceChange}
         />
         <TagsForm
           tags={this.state.recipe.tags}

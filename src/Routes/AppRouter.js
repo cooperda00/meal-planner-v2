@@ -12,6 +12,7 @@ import AddRecipe from "../components/Recipes/AddRecipe/AddRecipe";
 import IndividualRecipeContainer from "../components/Recipes/IndividualRecipe/IndividualRecipeContainer";
 import EditRecipe from "../components/Recipes/EditRecipe/EditRecipe";
 import PlannerContainer from "../components/Planner/PlannerContainer";
+import Page404 from "../components/Page404/Page404";
 //CSS
 import styles from "./AppRouter.module.scss";
 import "../base.css";
@@ -34,6 +35,7 @@ const AppRouter = () => (
         <Route path="/planner" component={PlannerContainer} exact={true} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route component={Page404} />
       </Switch>
     </div>
   </BrowserRouter>

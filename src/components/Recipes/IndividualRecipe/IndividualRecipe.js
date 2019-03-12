@@ -4,11 +4,31 @@ import { Link } from "react-router-dom";
 import uuid4 from "uuid";
 //CSS
 import styles from "./IndividualRecipe.module.scss";
+//Redux
+import { connect } from "react-redux";
+import { editPantryItem } from "../../../store/actions/pantryActions";
 
 class IndividualRecipe extends React.Component {
   state = {
     confirmDelete: false
   };
+
+  handleHaveChange = (ingName, isInPantry) => {
+    const pantryItem = this.props.pantry.filter(item => {
+      if (ingName === item.name) {
+        return true;
+      } else {
+        return false;
+      }
+    })[0];
+    const id = pantryItem.id;
+    const newItem = {
+      ...pantryItem,
+      have: !isInPantry
+    };
+    this.props.editPantryItem(id, newItem);
+  };
+
   render() {
     return (
       <div className={styles.IndividualRecipeContainer}>
@@ -23,6 +43,14 @@ class IndividualRecipe extends React.Component {
           alt={this.props.recipe.name}
           className={styles.IndividualRecipeImg}
         />
+
+        {/* SOURCE */}
+
+        <h5>
+          {this.props.recipe.source
+            ? this.props.recipe.source
+            : "-No source given-"}
+        </h5>
 
         {/* TAGS */}
         <div className={styles.TagsContainer}>
@@ -56,7 +84,13 @@ class IndividualRecipe extends React.Component {
                   <span>
                     {ing.amount} {ing.type}
                   </span>
-                  <input type="checkbox" readOnly checked={isInPantry} />
+                  <input
+                    type="checkbox"
+                    onChange={() => {
+                      this.handleHaveChange(ing.name, isInPantry);
+                    }}
+                    checked={isInPantry}
+                  />
                 </li>
               );
             })}
@@ -110,4 +144,15 @@ class IndividualRecipe extends React.Component {
   }
 }
 
-export default IndividualRecipe;
+const mapDispatchToProps = dispatch => {
+  return {
+    editPantryItem: (id, newItem) => {
+      dispatch(editPantryItem(id, newItem));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(IndividualRecipe);
