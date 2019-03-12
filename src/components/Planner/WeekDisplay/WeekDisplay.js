@@ -2,14 +2,49 @@
 import React, { Component } from "react";
 //CSS
 import styles from "./WeekDisplay.module.scss";
+//Redux
+import { connect } from "react-redux";
+import { updatePlanName } from "../../../store/actions/plannerActions";
 //Components
 import DayDisplay from "./DayDisplay/DayDisplay";
 
-export default class WeekDisplay extends Component {
+class WeekDisplay extends Component {
+  state = {
+    name: ""
+  };
+
+  componentDidMount() {
+    this.setState({
+      name: this.props.plan.planName
+    });
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const id = this.props.plan.id;
+    const payload = this.state.name;
+    this.props.updatePlanName(id, payload);
+  };
+
+  handleNameChange = e => {
+    this.setState({
+      name: e.target.value
+    });
+  };
+
   render() {
     if (this.props.plan) {
       return (
         <div className={styles.WeekDisplay}>
+          <form onSubmit={this.handleSubmit} className={styles.NameForm}>
+            <input
+              type="text"
+              value={this.state.name}
+              onChange={this.handleNameChange}
+            />
+            <button>Change Name</button>
+          </form>
+
           {this.props.plan.week.map(day => {
             return (
               <DayDisplay
@@ -27,3 +62,16 @@ export default class WeekDisplay extends Component {
     }
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updatePlanName: (planId, payload) => {
+      dispatch(updatePlanName(planId, payload));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(WeekDisplay);

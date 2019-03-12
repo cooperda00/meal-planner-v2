@@ -44,6 +44,12 @@ const plannerReducer = (state = initState, action) => {
     case "DELETE_PLAN_ERROR":
       console.log("Delete plan error", action.err);
       return state;
+    case "UPDATE_PLAN_NAME":
+      console.log("Updating plan name");
+      return state;
+    case "UPDATE_PLAN_NAME_ERROR":
+      console.log("Error updating plan name", action.err);
+      return state;
     default:
       return state;
   }

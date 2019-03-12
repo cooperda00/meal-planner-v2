@@ -3,6 +3,7 @@ export const addPlan = (userId, payload) => {
     const firestore = getFirestore();
     const db = firestore.collection("plans").doc();
     db.set({
+      planName: "Edit plan name here",
       id: db.id,
       userId: userId,
       timeStamp: new Date().getTime(),
@@ -11,6 +12,12 @@ export const addPlan = (userId, payload) => {
       .then(() => {
         dispatch({
           type: "CREATE_PLAN"
+        });
+      })
+      .then(() => {
+        dispatch({
+          type: "CHANGE_SELECTED_PLAN",
+          planId: db.id
         });
       })
       .catch(err => {
@@ -119,6 +126,29 @@ export const deletePlan = planId => {
       .catch(err => {
         dispatch({
           type: "DELETE_PLAN_ERROR",
+          err
+        });
+      });
+  };
+};
+
+export const updatePlanName = (planId, payload) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    const firestore = getFirestore();
+    firestore
+      .collection("plans")
+      .doc(planId)
+      .update({
+        planName: payload
+      })
+      .then(() => {
+        dispatch({
+          type: "UPDATE_PLAN_NAME"
+        });
+      })
+      .catch(err => {
+        dispatch({
+          type: "UPDATE_PLAN_NAME_ERROR",
           err
         });
       });

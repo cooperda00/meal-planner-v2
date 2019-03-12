@@ -3,7 +3,8 @@ import styles from "./DeleteWeek.module.scss";
 import { connect } from "react-redux";
 import {
   deletePlan,
-  changeSelectedPlan
+  changeSelectedPlan,
+  setDefaultPlan
 } from "../../../store/actions/plannerActions";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -11,6 +12,7 @@ import { firestoreConnect } from "react-redux-firebase";
 function DeleteWeek(props) {
   const handleDeleteWeek = () => {
     props.deletePlan(props.planId);
+    props.setDefaultPlan();
   };
 
   return (
@@ -40,6 +42,10 @@ const mapDispatchToProps = dispatch => {
 
     changeSelectedPlan: planId => {
       dispatch(changeSelectedPlan(planId));
+    },
+
+    setDefaultPlan: () => {
+      dispatch(setDefaultPlan());
     }
   };
 };

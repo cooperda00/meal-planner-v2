@@ -44,7 +44,6 @@ function AddNewWeek(props) {
       ]
     };
     props.addPlan(props.userId, payload); //
-    console.log("...adding");
   };
 
   return (

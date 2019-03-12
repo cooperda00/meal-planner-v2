@@ -25,7 +25,8 @@ class PlanSelector extends Component {
               this.props.plans.map(plan => {
                 return (
                   <option value={plan.id} key={uuid4()}>
-                    {moment(plan.timeStamp).format("DD/MM/YY")}
+                    {/* {moment(plan.timeStamp).format("DD/MM/YY")} */}
+                    {plan.planName}
                   </option>
                 );
               })}
