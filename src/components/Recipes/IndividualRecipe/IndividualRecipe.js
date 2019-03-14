@@ -70,12 +70,20 @@ class IndividualRecipe extends React.Component {
               // Compare ingredients in the recipe with ingredients
               // in the pantry and show checkbox based on this
               let isInPantry = false;
+              let isInStock = false;
               this.props.pantry.find(i => {
                 if (
                   i.name.toLowerCase() === ing.name.toLowerCase() &&
                   i.have === true
                 ) {
                   isInPantry = true;
+                  isInStock = true;
+                } else if (
+                  i.name.toLowerCase() === ing.name.toLowerCase() &&
+                  i.have === false
+                ) {
+                  isInPantry = true;
+                  isInStock = false;
                 }
               });
               return (
@@ -87,9 +95,13 @@ class IndividualRecipe extends React.Component {
                   <input
                     type="checkbox"
                     onChange={() => {
-                      this.handleHaveChange(ing.name, isInPantry);
+                      if (isInPantry) {
+                        this.handleHaveChange(ing.name, isInStock);
+                      } else {
+                        console.log("Ooopsies, not in stock");
+                      }
                     }}
-                    checked={isInPantry}
+                    checked={isInStock}
                   />
                 </li>
               );

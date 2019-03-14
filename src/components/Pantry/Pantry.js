@@ -30,6 +30,12 @@ const Pantry = props => {
   const pantryContainer = () => {
     return ingredients ? (
       <div className={styles.PantryItemContainer}>
+        <div className={styles.PantryTitles}>
+          <h3 className={styles.Item}>Food Item</h3>
+          <h3 className={styles.Price}>Price</h3>
+          <h3 className={styles.Unit}>Unit</h3>
+          <h3 className={styles.Stock}>In Stock</h3>
+        </div>
         {ingredients
           .sort((a, b) => a.timeStamp - b.timeStamp)
           .map(ing => {

@@ -1,11 +1,12 @@
 import React from "react";
 import styles from "./SourceForm.module.scss";
+import AutosizeInput from "react-input-autosize";
 
 export default function SourceForm(props) {
   return (
     <>
       <h3>Source: </h3>
-      <input
+      <AutosizeInput
         className={styles.AddSource}
         type="text"
         value={props.value}

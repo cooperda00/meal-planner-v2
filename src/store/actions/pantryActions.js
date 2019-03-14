@@ -5,7 +5,7 @@ const addPantryItem = id => {
       .collection("pantry")
       .add({
         userId: id,
-        have: false,
+        have: true,
         name: "",
         per: "",
         price: 0,

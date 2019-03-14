@@ -63,9 +63,9 @@ export const signUp = newUser => {
         firestore.collection("pantry").add({
           userId: res,
           have: true,
-          name: "i.e. Apples",
-          per: "i.e. pack",
-          price: 15,
+          name: "",
+          per: "",
+          price: 0,
           timeStamp: new Date().getTime()
         });
         //Add Initial Plan

@@ -1,6 +1,7 @@
 import React from "react";
 import uuid4 from "uuid";
 import styles from "./InstructionsForm.module.scss";
+import Textarea from "react-textarea-autosize";
 
 export default function InstructionsForm(props) {
   const handleRemove = (type, e) => {
@@ -26,7 +27,8 @@ export default function InstructionsForm(props) {
       </ol>
 
       <form onSubmit={props.handleAddInstruction}>
-        <textarea
+        <Textarea
+          className={styles.TextArea}
           name="instruction"
           value={props.value}
           onChange={props.handleChangeInstructionToAdd}

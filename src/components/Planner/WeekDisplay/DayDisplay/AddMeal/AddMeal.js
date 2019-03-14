@@ -52,45 +52,39 @@ class AddMeal extends Component {
     return (
       <div className={styles.AddMeal}>
         <div className={styles.TitleAndBack}>
-          <p>Add Meal Menu</p>
           <div onClick={this.props.showAddMeal}>X</div>
         </div>
         {this.props.recipes ? (
           <form action="" onSubmit={this.handleSubmit}>
-            <label htmlFor="">
-              Recipe:
-              <select
-                id="name"
-                value={this.state.name}
-                onChange={this.handleChange}
-              >
-                <option value="Select Meal">Select Meal</option>
-                {this.props.recipes &&
-                  this.props.recipes.map(recipe => {
-                    return (
-                      <option value={recipe.name} key={recipe.id}>
-                        {recipe.name}
-                      </option>
-                    );
-                  })}
-              </select>
-            </label>
+            <select
+              id="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            >
+              <option value="Select Meal">Select Recipe</option>
+              {this.props.recipes &&
+                this.props.recipes.map(recipe => {
+                  return (
+                    <option value={recipe.name} key={recipe.id}>
+                      {recipe.name}
+                    </option>
+                  );
+                })}
+            </select>
 
-            <label htmlFor="type">
-              Meal:
-              <select
-                name="type"
-                id="type"
-                value={this.state.type}
-                onChange={this.handleChange}
-              >
-                <option value="Breakfast">Breakfast</option>
-                <option value="Lunch">Lunch</option>
-                <option value="Dinner">Dinner</option>
-                <option value="Snack">Snack</option>
-              </select>
-            </label>
-            <button className={styles.AddMealSubmit}>Submit</button>
+            <select
+              name="type"
+              id="type"
+              value={this.state.type}
+              onChange={this.handleChange}
+            >
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Snack">Snack</option>
+            </select>
+
+            <button className={styles.AddMealSubmit}>Add To Plan</button>
           </form>
         ) : (
           <p>...Loading</p>

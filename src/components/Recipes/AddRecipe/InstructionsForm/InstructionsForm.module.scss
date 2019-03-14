@@ -7,17 +7,20 @@
   h3 {
     text-align: center;
   }
+}
 
-  input {
-    height: 2rem;
+.Form {
+  display: flex;
+  justify-content: center;
+
+  .TextInput input {
+    height: 28px;
+    padding: 0 1rem;
   }
 
   input[type="submit"] {
     padding: 0 1rem;
-  }
-
-  .TextInput {
-    width: 300px;
+    height: 2rem;
   }
 }
 

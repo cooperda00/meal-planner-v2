@@ -30,6 +30,32 @@
   flex-direction: column;
   align-items: center;
   min-width: 350px;
+  max-width: 500px;
+  width: 100%;
   border: 1px solid gray;
   margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
+.PantryTitles {
+  width: 100%;
+  h3 {
+    display: inline-block;
+  }
+
+  .Item {
+    width: 30%;
+  }
+
+  .Price {
+    width: 25%;
+  }
+
+  .Unit {
+    width: 20%;
+  }
+
+  .Stock {
+    width: 25%;
+  }
 }

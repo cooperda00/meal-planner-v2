@@ -20,12 +20,11 @@ export default function Planner(props) {
   }
   return (
     <div>
+      <PlanSelector />
       <div className={styles.ButtonContainer}>
         <AddNewWeek />
         <DeleteWeek />
       </div>
-
-      <PlanSelector />
       {selectedPlan}
     </div>
   );

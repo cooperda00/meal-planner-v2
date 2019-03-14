@@ -9,7 +9,9 @@ class Signup extends Component {
   state = {
     email: "",
     password: "",
-    initials: ""
+    initials: "",
+    passwordCheck: "",
+    error: ""
   };
 
   handleChange = e => {
@@ -20,7 +22,17 @@ class Signup extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.signUp(this.state);
+    if (this.state.password === this.state.passwordCheck) {
+      this.props.signUp({
+        email: this.state.email,
+        password: this.state.password,
+        initials: this.state.initials
+      });
+    } else {
+      this.setState({
+        error: "Please make sure you have typed your password correctly"
+      });
+    }
   };
 
   render() {
@@ -37,7 +49,12 @@ class Signup extends Component {
             <div className={styles.FormContainer}>
               <label htmlFor="email">
                 Email:
-                <input id="email" type="email" onChange={this.handleChange} />
+                <input
+                  id="email"
+                  type="email"
+                  onChange={this.handleChange}
+                  required
+                />
               </label>
             </div>
 
@@ -48,6 +65,19 @@ class Signup extends Component {
                   id="password"
                   type="password"
                   onChange={this.handleChange}
+                  required
+                />
+              </label>
+            </div>
+
+            <div className={styles.FormContainer}>
+              <label htmlFor="passwordCheck">
+                Password:
+                <input
+                  id="passwordCheck"
+                  type="password"
+                  onChange={this.handleChange}
+                  required
                 />
               </label>
             </div>
@@ -55,14 +85,22 @@ class Signup extends Component {
             <div className={styles.FormContainer}>
               <label htmlFor="initials">
                 Initials:
-                <input id="initials" type="text" onChange={this.handleChange} />
+                <input
+                  id="initials"
+                  type="text"
+                  onChange={this.handleChange}
+                  required
+                />
               </label>
             </div>
 
-            {authError && <p>{authError}</p>}
-
             <button>Submit</button>
           </form>
+          {authError && <p className={styles.Error}>{authError}</p>}
+
+          {this.state.error && (
+            <p className={styles.Error}>{this.state.error}</p>
+          )}
         </div>
       );
     }

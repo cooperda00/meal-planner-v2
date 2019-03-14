@@ -1,6 +1,7 @@
 import React from "react";
 import uuid4 from "uuid";
 import styles from "./InstructionsForm.module.scss";
+import AutosizeInput from "react-input-autosize";
 
 class InstructionsForm extends React.Component {
   addInstruction = e => {
@@ -33,8 +34,8 @@ class InstructionsForm extends React.Component {
           ))}
         </ol>
 
-        <form onSubmit={this.addInstruction}>
-          <input
+        <form onSubmit={this.addInstruction} className={styles.Form}>
+          <AutosizeInput
             type="text"
             name="instruction"
             value={this.props.value}

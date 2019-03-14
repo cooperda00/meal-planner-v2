@@ -5,6 +5,8 @@ import styles from "./PantryItem.module.scss";
 //Redux
 import { connect } from "react-redux";
 
+import AutosizeInput from "react-input-autosize";
+
 function PantryItem({
   editIngredient,
   editIngredientCheckbox,
@@ -26,16 +28,23 @@ function PantryItem({
     deleteIngredient(id);
   };
 
+  let placeholder = "Bottle";
+
+  if (name && price) {
+    placeholder = "";
+  }
+
   //Only Displays Data Created By The User
   if (userId === uid) {
     return (
       <div className={styles.PantryItem}>
-        <input
+        <AutosizeInput
           id="name"
           type="text"
           value={name}
           onChange={handleEditIngredient}
           className={styles.PantryItemName}
+          placeholder="Soy Sauce"
         />
         <span>฿</span>
         <input
@@ -46,6 +55,7 @@ function PantryItem({
           value={price}
           onChange={handleEditIngredient}
           className={styles.PantryItemSmall}
+          placeholder="25"
         />
         <span>per</span>
         <input
@@ -54,6 +64,7 @@ function PantryItem({
           value={per}
           onChange={handleEditIngredient}
           className={styles.PantryItemSmall}
+          placeholder={placeholder}
         />
         <input
           id="have"

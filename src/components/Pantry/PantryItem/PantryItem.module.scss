@@ -7,14 +7,19 @@
 }
 
 .PantryItemDeleteBtn {
+  width: 5px;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 
 .PantryItemName {
+  width: 100px;
+}
+
+.PantryItemName input {
   text-align: center;
-  width: 60px;
+  max-width: 100px;
   border: none;
 }
 

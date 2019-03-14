@@ -7,17 +7,18 @@ import styles from "./RecipeCard.module.scss";
 
 export default function RecipeCard(props) {
   return (
-    <div className={styles.CardContainer}>
-      <Link to={`/recipes/${props.id}`}>
+    <Link to={`/recipes/${props.id}`}>
+      <div className={styles.CardContainer}>
         <h1>{props.name}</h1>
-      </Link>
-      <img src={props.imgUrl} alt={props.name} />
 
-      <ul className={styles.RecipeCardTags}>
-        {props.tags.map(tag => {
-          return <li key={uuid4()}>{tag}</li>;
-        })}
-      </ul>
-    </div>
+        <img src={props.imgUrl} alt={props.name} />
+
+        <ul className={styles.RecipeCardTags}>
+          {props.tags.map(tag => {
+            return <li key={uuid4()}>{tag}</li>;
+          })}
+        </ul>
+      </div>
+    </Link>
   );
 }
