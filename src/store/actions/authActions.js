@@ -53,13 +53,13 @@ export const signUp = newUser => {
             initials: newUser.initials
           });
       })
-      //Add dummy instruction datum to the pantry to guide users initially
+
       .then(() => {
         const state = getState();
         return state.firebase.auth.uid;
       })
       .then(res => {
-        console.log(res);
+        //Add dummy instruction data to the pantry to guide users initially
         firestore.collection("pantry").add({
           userId: res,
           have: true,
@@ -67,6 +67,44 @@ export const signUp = newUser => {
           per: "i.e. pack",
           price: 15,
           timeStamp: new Date().getTime()
+        });
+        //Add Initial Plan
+        const db = firestore.collection("plans").doc();
+        db.set({
+          planName: "untitled",
+          id: db.id,
+          userId: res,
+          timeStamp: new Date().getTime(),
+          week: [
+            {
+              day: 1,
+              meals: []
+            },
+            {
+              day: 2,
+              meals: []
+            },
+            {
+              day: 3,
+              meals: []
+            },
+            {
+              day: 4,
+              meals: []
+            },
+            {
+              day: 5,
+              meals: []
+            },
+            {
+              day: 6,
+              meals: []
+            },
+            {
+              day: 7,
+              meals: []
+            }
+          ]
         });
       })
       .then(() => {

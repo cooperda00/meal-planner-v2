@@ -44,8 +44,9 @@ class InstructionsForm extends React.Component {
               this.nameInput = input;
             }}
             className={styles.TextInput}
+            placeholder="Boil pasta for 11 minutes"
           />
-          <input type="submit" value="+" />
+          <input type="submit" value="Add To List" />
         </form>
       </div>
     );

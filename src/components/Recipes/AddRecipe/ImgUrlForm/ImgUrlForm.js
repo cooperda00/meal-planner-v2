@@ -10,6 +10,7 @@ export default function ImgUrlForm(props) {
         className={styles.AddRecipeImage}
         value={props.value}
         onChange={props.handleImgUrlChange}
+        placeholder="https://myveganblog.com/onepotpasta.jpg"
       />
     </>
   );

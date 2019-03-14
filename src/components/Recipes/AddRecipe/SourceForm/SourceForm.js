@@ -10,6 +10,7 @@ export default function SourceForm(props) {
         type="text"
         value={props.value}
         onChange={props.handleSourceChange}
+        placeholder="My Vegan Blog"
       />
     </>
   );

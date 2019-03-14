@@ -6,44 +6,7 @@ import { addPlan } from "../../../store/actions/plannerActions";
 
 function AddNewWeek(props) {
   const handleAddNewWeek = () => {
-    const payload = {
-      week: [
-        {
-          day: 1,
-          meals: [
-            {
-              type: "Breakfast",
-              name: "Oatmeal"
-            }
-          ]
-        },
-        {
-          day: 2,
-          meals: [{ type: "lunch", name: "Veg Sandwich" }]
-        },
-        {
-          day: 3,
-          meals: []
-        },
-        {
-          day: 4,
-          meals: []
-        },
-        {
-          day: 5,
-          meals: []
-        },
-        {
-          day: 6,
-          meals: []
-        },
-        {
-          day: 7,
-          meals: []
-        }
-      ]
-    };
-    props.addPlan(props.userId, payload); //
+    props.addPlan(props.userId); //
   };
 
   return (

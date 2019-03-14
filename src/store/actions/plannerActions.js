@@ -1,13 +1,42 @@
-export const addPlan = (userId, payload) => {
+export const addPlan = userId => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     const db = firestore.collection("plans").doc();
     db.set({
-      planName: "Edit plan name here",
+      planName: "untitled",
       id: db.id,
       userId: userId,
       timeStamp: new Date().getTime(),
-      ...payload
+      week: [
+        {
+          day: 1,
+          meals: []
+        },
+        {
+          day: 2,
+          meals: []
+        },
+        {
+          day: 3,
+          meals: []
+        },
+        {
+          day: 4,
+          meals: []
+        },
+        {
+          day: 5,
+          meals: []
+        },
+        {
+          day: 6,
+          meals: []
+        },
+        {
+          day: 7,
+          meals: []
+        }
+      ]
     })
       .then(() => {
         dispatch({

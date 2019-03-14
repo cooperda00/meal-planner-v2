@@ -52,7 +52,7 @@ export default function IngredientsForm(props) {
             value={props.value3}
             onChange={props.handleChangeIngredientToAdd}
           />
-          <input type="submit" value="+" />
+          <input type="submit" value="Add To List" />
         </form>
       </div>
     </>

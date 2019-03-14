@@ -33,17 +33,21 @@ class WeekDisplay extends Component {
   };
 
   render() {
+    console.log(this.props.plan);
     if (this.props.plan) {
       return (
         <div className={styles.WeekDisplay}>
           <form onSubmit={this.handleSubmit} className={styles.NameForm}>
             <input
               type="text"
-              value={this.state.name}
+              placeholder="Name/Rename Your Plan"
               onChange={this.handleNameChange}
             />
-            <button>Change Name</button>
+            <button>Save</button>
           </form>
+
+          <h1>Meal Plan: </h1>
+          <h1>{this.props.plan.planName}</h1>
 
           {this.props.plan.week.map(day => {
             return (

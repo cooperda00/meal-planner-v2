@@ -7,9 +7,8 @@ import { firestoreConnect } from "react-redux-firebase";
 function UserLogo(props) {
   let initials = "";
   if (props.user) {
-    if (props.user[0].initials) {
-      initials = props.user[0].initials;
-    }
+    const newInitials = props.user.map(user => user.initials);
+    initials = newInitials;
   }
   return (
     <div className={styles.UserLogo}>

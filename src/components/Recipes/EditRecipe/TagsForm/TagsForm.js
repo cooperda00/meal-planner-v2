@@ -35,7 +35,7 @@ export default function TagsForm(props) {
             onChange={props.handleChangeToAdd}
             required
           />
-          <input type="submit" value="+" />
+          <input type="submit" value="Add To List" />
         </form>
       </div>
     </>

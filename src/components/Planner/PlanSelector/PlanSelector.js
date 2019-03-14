@@ -9,29 +9,29 @@ import styles from "./PlanSelector.module.scss";
 
 class PlanSelector extends Component {
   handlePlanChange = e => {
-    this.props.changeSelectedPlan(e.target.value);
+    if (e.target.value !== "instructions") {
+      this.props.changeSelectedPlan(e.target.value);
+    }
   };
 
   render() {
-    if (this.props.plans) {
-      console.log(this.props.plans);
-    }
     return (
       <div className={styles.PlanSelector}>
-        <label htmlFor="planChange">
-          Change Plan:
-          <select onChange={this.handlePlanChange} id="planChange">
-            {this.props.plans &&
-              this.props.plans.map(plan => {
-                return (
-                  <option value={plan.id} key={uuid4()}>
-                    {/* {moment(plan.timeStamp).format("DD/MM/YY")} */}
-                    {plan.planName}
-                  </option>
-                );
-              })}
-          </select>
-        </label>
+        <select
+          onChange={this.handlePlanChange}
+          id="planChange"
+          placeholder="Select weekly plan"
+        >
+          <option value="instructions">Select Old Plans</option>
+          {this.props.plans &&
+            this.props.plans.map(plan => {
+              return (
+                <option value={plan.id} key={uuid4()}>
+                  {plan.planName}
+                </option>
+              );
+            })}
+        </select>
       </div>
     );
   }

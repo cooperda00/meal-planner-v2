@@ -44,8 +44,9 @@ class TagsForm extends React.Component {
               ref={input => {
                 this.nameInput = input;
               }}
+              placeholder="Gluten-free"
             />
-            <input type="submit" value="+" />
+            <input type="submit" value="Add To List" />
           </form>
         </div>
       </>

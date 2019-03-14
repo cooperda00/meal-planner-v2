@@ -46,6 +46,7 @@ class IngredientsForm extends React.Component {
               ref={input => {
                 this.nameInput = input;
               }}
+              placeholder="Rice pasta"
             />
             <input
               className={styles.Num}
@@ -56,6 +57,7 @@ class IngredientsForm extends React.Component {
               value={this.props.value2}
               onChange={this.props.handleChangeIngredientToAdd}
               required
+              placeholder="1"
             />
             <input
               className={styles.Type}
@@ -63,8 +65,9 @@ class IngredientsForm extends React.Component {
               name="type"
               value={this.props.value3}
               onChange={this.props.handleChangeIngredientToAdd}
+              placeholder="Cup"
             />
-            <input type="submit" value="+" />
+            <input type="submit" value="Add To List" />
           </form>
         </div>
       </>

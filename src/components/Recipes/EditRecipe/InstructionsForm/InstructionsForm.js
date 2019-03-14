@@ -32,7 +32,7 @@ export default function InstructionsForm(props) {
           onChange={props.handleChangeInstructionToAdd}
           required
         />
-        <input type="submit" value="+" />
+        <input type="submit" value="Add To List" />
       </form>
     </div>
   );

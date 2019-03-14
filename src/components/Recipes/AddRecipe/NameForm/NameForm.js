@@ -10,6 +10,7 @@ export default function NameForm(props) {
         type="text"
         value={props.value}
         onChange={props.handleNameChange}
+        placeholder="Vegan One Pot Pasta"
         required
       />
     </>

@@ -217,14 +217,15 @@ class AddRecipe extends Component {
           value={this.state.recipe.name}
           handleNameChange={this.handleNameChange}
         />
-        <ImgUrlForm
-          value={this.state.recipe.imgUrl}
-          handleImgUrlChange={this.handleImgUrlChange}
-        />
         <SourceForm
           value={this.state.recipe.source}
           handleSourceChange={this.handleSourceChange}
         />
+        <ImgUrlForm
+          value={this.state.recipe.imgUrl}
+          handleImgUrlChange={this.handleImgUrlChange}
+        />
+
         <TagsForm
           tags={this.state.recipe.tags}
           handleAddTag={this.handleAddTag}
