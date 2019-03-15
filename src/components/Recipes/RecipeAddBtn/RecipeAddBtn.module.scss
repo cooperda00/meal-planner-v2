@@ -1,7 +1,11 @@
+.Container {
+  margin-top: 1rem;
+}
+
 .Add {
   height: 50px;
   width: 50px;
-  margin-top: 1rem;
+  // margin-top: 1rem;
   border-radius: 50%;
   align-self: center;
   justify-self: center;
@@ -12,6 +16,10 @@
 
 .Add:hover {
   border-radius: 0;
+}
+
+.Add:focus {
+  outline: 5px auto rgba(0, 150, 255, 1);
 }
 
 .CrossContainer {

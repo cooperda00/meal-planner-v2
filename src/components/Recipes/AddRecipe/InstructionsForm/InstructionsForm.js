@@ -27,6 +27,12 @@ class InstructionsForm extends React.Component {
                 id={ins}
                 onClick={this.handleRemove.bind(this, "ins")}
                 className={styles.removeBtn}
+                onKeyPress={e => {
+                  if (e.key === "Enter") {
+                    this.handleRemove("ins", e);
+                  }
+                }}
+                tabIndex="0"
               >
                 -
               </span>

@@ -23,6 +23,12 @@ export default function IngredientsForm(props) {
                 id={ing.name}
                 onClick={handleRemove.bind(this, "ing")}
                 className={styles.removeBtn}
+                tabIndex="0"
+                onKeyPress={e => {
+                  if (e.key === "Enter") {
+                    handleRemove("ing", e);
+                  }
+                }}
               >
                 -
               </span>

@@ -101,6 +101,13 @@ class IndividualRecipe extends React.Component {
                         console.log("Ooopsies, not in stock");
                       }
                     }}
+                    onKeyPress={e => {
+                      if (e.key === "Enter" && isInPantry) {
+                        this.handleHaveChange(ing.name, isInStock);
+                      } else {
+                        console.log("Ooopsies, not in stock");
+                      }
+                    }}
                     checked={isInStock}
                   />
                 </li>

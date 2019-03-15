@@ -28,6 +28,12 @@ class TagsForm extends React.Component {
                   id={tag}
                   onClick={this.handleRemove.bind(this, "tag")}
                   className={styles.removeBtn}
+                  onKeyPress={e => {
+                    if (e.key === "Enter") {
+                      this.handleRemove("tag", e);
+                    }
+                  }}
+                  tabIndex="0"
                 >
                   -
                 </span>

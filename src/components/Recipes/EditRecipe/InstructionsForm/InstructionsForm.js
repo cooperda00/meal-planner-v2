@@ -19,6 +19,12 @@ export default function InstructionsForm(props) {
               id={ins}
               onClick={handleRemove.bind(this, "ins")}
               className={styles.removeBtn}
+              tabIndex="0"
+              onKeyPress={e => {
+                if (e.key === "Enter") {
+                  handleRemove("ins", e);
+                }
+              }}
             >
               -
             </span>

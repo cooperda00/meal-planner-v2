@@ -1,5 +1,6 @@
 //Modules
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 //Redux
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
@@ -14,12 +15,16 @@ class PlannerContainer extends Component {
   }
 
   render() {
-    return (
-      <Planner
-        plans={this.props.plans}
-        selectedPlan={this.props.selectedPlan}
-      />
-    );
+    if (this.props.userId) {
+      return (
+        <Planner
+          plans={this.props.plans}
+          selectedPlan={this.props.selectedPlan}
+        />
+      );
+    } else {
+      return <Redirect to="/" />;
+    }
   }
 }
 
@@ -45,12 +50,14 @@ export default compose(
     mapDispatchToProps
   ),
   firestoreConnect(props => {
-    return [
-      {
-        collection: "plans",
-        orderBy: ["timeStamp", "desc"],
-        where: ["userId", "==", props.userId]
-      }
-    ];
+    if (props.userId) {
+      return [
+        {
+          collection: "plans",
+          orderBy: ["timeStamp", "desc"],
+          where: ["userId", "==", props.userId]
+        }
+      ];
+    } else return [];
   })
 )(PlannerContainer);

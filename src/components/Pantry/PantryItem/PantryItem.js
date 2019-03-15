@@ -1,20 +1,35 @@
 //Modules
 import React from "react";
+import AutosizeInput from "react-input-autosize";
 //Styles
 import styles from "./PantryItem.module.scss";
 //Redux
 import { connect } from "react-redux";
-
-import AutosizeInput from "react-input-autosize";
+import { addPantryItem } from "../../../store/actions/pantryActions";
 
 function PantryItem({
   editIngredient,
   editIngredientCheckbox,
   deleteIngredient,
   ing,
-  uid
+  uid,
+  addPantryItem
 }) {
   const { name, price, per, have, id, userId } = ing;
+
+  //Apply conditional underlines
+  let nameClass = `${styles.PantryItemName}`;
+  if (name === "") {
+    nameClass = `${styles.PantryItemName} ${styles.Underline}`;
+  }
+  let priceClass = `${styles.PantryItemSmall}`;
+  if (price === 0) {
+    priceClass = `${styles.PantryItemSmall} ${styles.Underline}`;
+  }
+  let typeClass = `${styles.PantryItemSmall}`;
+  if (per === "") {
+    typeClass = `${styles.PantryItemSmall} ${styles.Underline}`;
+  }
 
   const handleEditIngredient = e => {
     editIngredient(id, e.target.id, e.target.value, e.target.checked);
@@ -26,6 +41,12 @@ function PantryItem({
 
   const handleDelete = () => {
     deleteIngredient(id);
+  };
+
+  const handleKeyPress = e => {
+    if (e.key === "Enter") {
+      addPantryItem(uid);
+    }
   };
 
   let placeholder = "Bottle";
@@ -43,7 +64,7 @@ function PantryItem({
           type="text"
           value={name}
           onChange={handleEditIngredient}
-          className={styles.PantryItemName}
+          className={nameClass}
           placeholder="Soy Sauce"
         />
         <span>฿</span>
@@ -54,8 +75,9 @@ function PantryItem({
           step="0.01"
           value={price}
           onChange={handleEditIngredient}
-          className={styles.PantryItemSmall}
+          className={priceClass}
           placeholder="25"
+          onKeyPress={handleKeyPress}
         />
         <span>per</span>
         <input
@@ -63,8 +85,9 @@ function PantryItem({
           type="text"
           value={per}
           onChange={handleEditIngredient}
-          className={styles.PantryItemSmall}
+          className={typeClass}
           placeholder={placeholder}
+          onKeyPress={handleKeyPress}
         />
         <input
           id="have"
@@ -83,10 +106,21 @@ function PantryItem({
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addPantryItem: uid => {
+      dispatch(addPantryItem(uid));
+    }
+  };
+};
+
 const mapStateToProps = state => {
   return {
     uid: state.firebase.auth.uid
   };
 };
 
-export default connect(mapStateToProps)(PantryItem);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PantryItem);

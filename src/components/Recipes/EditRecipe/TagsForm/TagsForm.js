@@ -19,7 +19,13 @@ export default function TagsForm(props) {
               <span
                 id={tag}
                 onClick={handleRemove.bind(this, "tag")}
+                onKeyPress={e => {
+                  if (e.key === "Enter") {
+                    handleRemove("tag", e);
+                  }
+                }}
                 className={styles.removeBtn}
+                tabIndex="0"
               >
                 -
               </span>

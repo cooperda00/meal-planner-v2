@@ -30,6 +30,12 @@ class IngredientsForm extends React.Component {
                   id={ing.name}
                   onClick={this.handleRemove.bind(this, "ing")}
                   className={styles.removeBtn}
+                  onKeyPress={e => {
+                    if (e.key === "Enter") {
+                      this.handleRemove("ing", e);
+                    }
+                  }}
+                  tabIndex="0"
                 >
                   -
                 </span>
