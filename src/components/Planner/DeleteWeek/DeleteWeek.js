@@ -16,7 +16,16 @@ function DeleteWeek(props) {
   };
 
   return (
-    <div className={styles.Container}>
+    <div
+      className={styles.Container}
+      tabIndex="0"
+      onKeyPress={e => {
+        if (e.key === "Enter") {
+          props.deletePlan(props.planId);
+          props.setDefaultPlan();
+        }
+      }}
+    >
       <div className={styles.Add} onClick={handleDeleteWeek}>
         <div className={styles.CrossContainer}>
           <div className={styles.Horizontal} />

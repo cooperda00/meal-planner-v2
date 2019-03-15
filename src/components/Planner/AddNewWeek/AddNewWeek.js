@@ -10,7 +10,15 @@ function AddNewWeek(props) {
   };
 
   return (
-    <div className={styles.Container}>
+    <div
+      className={styles.Container}
+      tabIndex="0"
+      onKeyPress={e => {
+        if (e.key === "Enter") {
+          props.addPlan(props.userId);
+        }
+      }}
+    >
       <div className={styles.Add} onClick={handleAddNewWeek}>
         <div className={styles.CrossContainer}>
           <div className={styles.Horizontal} />
