@@ -6,7 +6,10 @@ import uuid4 from "uuid";
 import styles from "./IndividualRecipe.module.scss";
 //Redux
 import { connect } from "react-redux";
-import { editPantryItem } from "../../../store/actions/pantryActions";
+import {
+  editPantryItem,
+  addPantryItem
+} from "../../../store/actions/pantryActions";
 
 class IndividualRecipe extends React.Component {
   state = {
@@ -98,14 +101,14 @@ class IndividualRecipe extends React.Component {
                       if (isInPantry) {
                         this.handleHaveChange(ing.name, isInStock);
                       } else {
-                        console.log("Ooopsies, not in stock");
+                        this.props.addPantryItem(this.props.uid, ing.name);
                       }
                     }}
                     onKeyPress={e => {
                       if (e.key === "Enter" && isInPantry) {
                         this.handleHaveChange(ing.name, isInStock);
                       } else {
-                        console.log("Ooopsies, not in stock");
+                        this.props.addPantryItem(this.props.uid, ing.name);
                       }
                     }}
                     checked={isInStock}
@@ -163,15 +166,25 @@ class IndividualRecipe extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    uid: state.firebase.auth.uid
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     editPantryItem: (id, newItem) => {
       dispatch(editPantryItem(id, newItem));
+    },
+
+    addPantryItem: (id, name) => {
+      dispatch(addPantryItem(id, name));
     }
   };
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(IndividualRecipe);

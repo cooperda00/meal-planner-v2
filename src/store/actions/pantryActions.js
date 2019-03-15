@@ -1,4 +1,4 @@
-const addPantryItem = id => {
+const addPantryItem = (id, name = "") => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     firestore
@@ -6,7 +6,7 @@ const addPantryItem = id => {
       .add({
         userId: id,
         have: true,
-        name: "",
+        name: name,
         per: "",
         price: 0,
         timeStamp: new Date().getTime()
@@ -24,6 +24,10 @@ const addPantryItem = id => {
       });
   };
 };
+
+// export const addPantryItemSpecific = (uid, ) => {
+
+// }
 
 const removePantryItem = id => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
