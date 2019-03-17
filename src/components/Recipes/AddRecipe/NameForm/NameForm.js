@@ -5,7 +5,9 @@ import AutosizeInput from "react-input-autosize";
 export default function NameForm(props) {
   return (
     <>
-      <h3>Recipe Name:</h3>
+      <h3>
+        <span className={styles.Manditory}>* </span>Recipe Name:
+      </h3>
       <AutosizeInput
         className={styles.AddRecipeTitle}
         type="text"

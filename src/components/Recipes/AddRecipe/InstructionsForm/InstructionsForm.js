@@ -18,7 +18,10 @@ class InstructionsForm extends React.Component {
   render() {
     return (
       <div className={styles.AddInstructionsContainer}>
-        <h3>Instructions:</h3>
+        <h3>
+          {" "}
+          <span className={styles.Manditory}>* </span>Instructions:
+        </h3>
         <ol>
           {this.props.instructions.map(ins => (
             <li key={uuid4()}>

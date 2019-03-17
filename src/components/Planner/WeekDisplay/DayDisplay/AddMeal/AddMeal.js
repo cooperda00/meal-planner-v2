@@ -57,9 +57,22 @@ class AddMeal extends Component {
         {this.props.recipes ? (
           <form action="" onSubmit={this.handleSubmit}>
             <select
+              name="type"
+              id="type"
+              value={this.state.type}
+              onChange={this.handleChange}
+              className={styles.Input}
+            >
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Snack">Snack</option>
+            </select>
+            <select
               id="name"
               value={this.state.name}
               onChange={this.handleChange}
+              className={styles.Input}
             >
               <option value="Select Meal">Select Recipe</option>
               {this.props.recipes &&
@@ -70,18 +83,6 @@ class AddMeal extends Component {
                     </option>
                   );
                 })}
-            </select>
-
-            <select
-              name="type"
-              id="type"
-              value={this.state.type}
-              onChange={this.handleChange}
-            >
-              <option value="Breakfast">Breakfast</option>
-              <option value="Lunch">Lunch</option>
-              <option value="Dinner">Dinner</option>
-              <option value="Snack">Snack</option>
             </select>
 
             <button className={styles.AddMealSubmit}>Add To Plan</button>

@@ -25,7 +25,7 @@ class WeekDisplay extends Component {
     e.preventDefault();
     if (this.state.month !== "" && this.state.week !== "") {
       const id = this.props.plan.id;
-      const payload = `${this.state.month}: ${this.state.week}`;
+      const payload = `${this.state.month} ${this.state.week}`;
       this.props.updatePlanName(id, payload);
     }
   };

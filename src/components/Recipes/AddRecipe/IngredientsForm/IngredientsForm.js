@@ -18,10 +18,12 @@ class IngredientsForm extends React.Component {
     return (
       <>
         <div className={styles.AddIngredientsContainer}>
-          <h3>Ingredients:</h3>
+          <h3>
+            <span className={styles.Manditory}>* </span>Ingredients:
+          </h3>
           <ul>
             {this.props.ingredients.map(ing => (
-              <li key={uuid4()}>
+              <li key={uuid4()} className={styles.Bullet}>
                 {ing.name}{" "}
                 <span>
                   {ing.amount} {ing.type}

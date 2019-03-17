@@ -1,8 +1,8 @@
 .AddMeal {
   top: 0;
   right: 0;
-  height: 150px;
-  width: 200px;
+  height: 250px;
+  width: 250px;
   z-index: 2;
   position: absolute;
   background: white;
@@ -22,8 +22,14 @@
       text-align: center;
     }
 
-    input {
+    select:nth-child(1) {
+      margin: 1rem 0;
+    }
+
+    .Input {
       display: block;
+      width: 200px;
+      height: 2rem;
     }
   }
 }
@@ -33,8 +39,8 @@
 
   div {
     position: absolute;
-    right: -6rem;
-    top: -1.3rem;
+    right: -5.5rem;
+    top: -2rem;
   }
 }
 

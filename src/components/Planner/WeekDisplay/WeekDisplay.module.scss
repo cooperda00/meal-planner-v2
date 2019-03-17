@@ -31,10 +31,11 @@
   align-items: center;
   width: 40%;
 
-  input,
   select {
     height: 2rem;
     padding: 0;
+    width: 160px;
+    margin-bottom: 1rem;
   }
 
   button {
