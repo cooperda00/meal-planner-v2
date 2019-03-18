@@ -16,6 +16,7 @@ import IngredientsForm from "./IngredientsForm/IngredientsForm";
 import InstructionsForm from "./InstructionsForm/InstructionsForm";
 import Controls from "./Controls/Controls";
 import SourceForm from "./SourceForm/SourceForm";
+import ServesForm from "./ServesForm/ServesForm";
 
 class EditRecipe extends Component {
   state = {
@@ -24,7 +25,8 @@ class EditRecipe extends Component {
       ingredients: [],
       instructions: [],
       name: "",
-      imgUrl: ""
+      imgUrl: "",
+      serves: 1
     },
     tagToAdd: "",
     ingredientToAdd: {
@@ -57,7 +59,8 @@ class EditRecipe extends Component {
         instructions: recipe.instructions,
         name: recipe.name,
         imgUrl: recipe.imgUrl,
-        source: recipe.source
+        source: recipe.source,
+        serves: recipe.serves
       },
       initialPopulate: false
     });
@@ -73,7 +76,8 @@ class EditRecipe extends Component {
         ingredients: [],
         instructions: [],
         name: "",
-        imgUrl: ""
+        imgUrl: "",
+        serves: 1
       }
     });
     this.props.history.push(`/recipes/${id}`);
@@ -84,6 +88,15 @@ class EditRecipe extends Component {
       recipe: {
         ...this.state.recipe,
         name: e.target.value
+      }
+    });
+  };
+
+  handleServesChange = e => {
+    this.setState({
+      recipe: {
+        ...this.state.recipe,
+        serves: e.target.value
       }
     });
   };
@@ -114,7 +127,11 @@ class EditRecipe extends Component {
 
   handleAddTag = e => {
     e.preventDefault();
-    let tag = this.state.tagToAdd;
+    let tag = this.state.tagToAdd
+      .toLowerCase()
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
     const tags = [...this.state.recipe.tags, tag];
     this.setState(() => {
       return {
@@ -231,6 +248,10 @@ class EditRecipe extends Component {
         <NameForm
           value={this.state.recipe.name}
           handleNameChange={this.handleNameChange}
+        />
+        <ServesForm
+          value={this.state.recipe.serves}
+          handleServesChange={this.handleServesChange}
         />
         <ImgUrlForm
           value={this.state.recipe.imgUrl}

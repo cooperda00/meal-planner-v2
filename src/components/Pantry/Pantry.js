@@ -6,13 +6,12 @@ import styles from "./Pantry.module.scss";
 //Components
 import PantryItem from "./PantryItem/PantryItem";
 import Spinner from "../Spinner/Spinner";
-import PantryAddBtn from "./PantryAddBtn/PantryAddBtn";
+import PantryForm from "./PantryForm/PantryForm";
 //Redux
 import { connect } from "react-redux";
 
 const Pantry = props => {
   const {
-    handleAddIngredient,
     handleDeleteIngredient,
     handleEditIngredient,
     handleEditIngredientCheckbox
@@ -49,6 +48,7 @@ const Pantry = props => {
               />
             );
           })}
+        <PantryForm />
       </div>
     ) : (
       <Spinner />
@@ -60,7 +60,6 @@ const Pantry = props => {
         <h1 className={styles.PantryTitle}>Pantry</h1>
       </div>
       {pantryContainer()}
-      <PantryAddBtn handleAddIngredient={handleAddIngredient} />
     </div>
   );
 };

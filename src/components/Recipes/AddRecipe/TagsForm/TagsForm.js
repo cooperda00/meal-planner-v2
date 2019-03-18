@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./TagsForm.module.scss";
 import uuid4 from "uuid";
-import AutosizeInput from "react-input-autosize";
 
 class TagsForm extends React.Component {
   addTag = e => {

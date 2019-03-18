@@ -1,0 +1,47 @@
+.PantryItem {
+  margin-top: 1.5rem;
+  border-top: 1px solid lightgray;
+  font-size: 1.2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 10px 5px 0;
+}
+
+.PantryItemName {
+  //   min-width: 100px;
+  max-width: 100px;
+}
+.PantryItemName input {
+  min-width: 100px;
+  max-width: 100px;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.PantryItemSmall {
+  border: none;
+  width: 60px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.Underline {
+  border-bottom: 1px solid red;
+}
+
+.PantryItemAddBtn {
+  width: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 0;
+  padding: 0;
+}
+
+.Type {
+  width: 50px;
+}

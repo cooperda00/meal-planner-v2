@@ -55,6 +55,12 @@ class IndividualRecipe extends React.Component {
             : "-No source given-"}
         </h5>
 
+        {/* SERVES */}
+
+        <div style={{ marginTop: "1rem" }}>
+          <h3>Serves: {this.props.recipe.serves}</h3>
+        </div>
+
         {/* TAGS */}
         <div className={styles.TagsContainer}>
           <h3>Tags:</h3>

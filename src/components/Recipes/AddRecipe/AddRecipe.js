@@ -14,6 +14,7 @@ import IngredientsForm from "./IngredientsForm/IngredientsForm";
 import InstructionsForm from "./InstructionsForm/InstructionsForm";
 import Controls from "./Controls/Controls";
 import SourceForm from "./SourceForm/SourceForm";
+import ServesForm from "./ServesForm/ServesForm";
 
 class AddRecipe extends Component {
   state = {
@@ -22,7 +23,8 @@ class AddRecipe extends Component {
       ingredients: [],
       instructions: [],
       name: "",
-      imgUrl: ""
+      imgUrl: "",
+      serves: 1
     },
     tagToAdd: "",
     ingredientToAdd: {
@@ -52,7 +54,8 @@ class AddRecipe extends Component {
           instructions: [],
           name: "",
           imgUrl: "",
-          source: ""
+          source: "",
+          serves: 1
         }
       });
       this.props.history.push("/recipes");
@@ -69,6 +72,15 @@ class AddRecipe extends Component {
       recipe: {
         ...this.state.recipe,
         name: e.target.value
+      }
+    });
+  };
+
+  handleServesChange = e => {
+    this.setState({
+      recipe: {
+        ...this.state.recipe,
+        serves: e.target.value
       }
     });
   };
@@ -99,7 +111,12 @@ class AddRecipe extends Component {
 
   handleAddTag = e => {
     e.preventDefault();
-    let tag = this.state.tagToAdd;
+    //Format tag
+    let tag = this.state.tagToAdd
+      .toLowerCase()
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
     const tags = [...this.state.recipe.tags, tag];
     this.setState(() => {
       return {
@@ -216,6 +233,10 @@ class AddRecipe extends Component {
         <NameForm
           value={this.state.recipe.name}
           handleNameChange={this.handleNameChange}
+        />
+        <ServesForm
+          value={this.state.recipe.serves}
+          handleServesChange={this.handleServesChange}
         />
         <SourceForm
           value={this.state.recipe.source}

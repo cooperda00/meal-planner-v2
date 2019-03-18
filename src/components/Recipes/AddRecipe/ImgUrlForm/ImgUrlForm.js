@@ -6,6 +6,9 @@ export default function ImgUrlForm(props) {
   return (
     <>
       <h3>Recipe Image URL</h3>
+      <p
+        className={styles.P}
+      >{`( Right click on an image, select "copy image address" )`}</p>
       <AutosizeInput
         type="text"
         className={styles.AddRecipeImage}

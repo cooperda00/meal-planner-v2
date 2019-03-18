@@ -22,9 +22,9 @@ function PantryItem({
   if (name === "") {
     nameClass = `${styles.PantryItemName} ${styles.Underline}`;
   }
-  let priceClass = `${styles.PantryItemSmall}`;
+  let priceClass = `${styles.PantryItemSmall} `;
   if (price === 0) {
-    priceClass = `${styles.PantryItemSmall} ${styles.Underline}`;
+    priceClass = `${styles.PantryItemSmall}  ${styles.Underline}`;
   }
   let typeClass = `${styles.PantryItemSmall}`;
   if (per === "") {
@@ -49,12 +49,6 @@ function PantryItem({
     }
   };
 
-  let placeholder = "Bottle";
-
-  if (name && price) {
-    placeholder = "";
-  }
-
   //Only Displays Data Created By The User
   if (userId === uid) {
     return (
@@ -65,7 +59,7 @@ function PantryItem({
           value={name}
           onChange={handleEditIngredient}
           className={nameClass}
-          placeholder="Soy Sauce"
+          // placeholder="Soy Sauce"
         />
         <span>฿</span>
         <input
@@ -76,7 +70,6 @@ function PantryItem({
           value={price}
           onChange={handleEditIngredient}
           className={priceClass}
-          placeholder="25"
           onKeyPress={handleKeyPress}
         />
         <span>per</span>
@@ -86,7 +79,6 @@ function PantryItem({
           value={per}
           onChange={handleEditIngredient}
           className={typeClass}
-          placeholder={placeholder}
           onKeyPress={handleKeyPress}
         />
         <input

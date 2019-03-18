@@ -1,14 +1,14 @@
-const addPantryItem = (id, name = "") => {
+const addPantryItem = (id, name = "", have = true, per = "", price = 0) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
     firestore
       .collection("pantry")
       .add({
         userId: id,
-        have: true,
+        have: have,
         name: name,
-        per: "",
-        price: 0,
+        per: per,
+        price: price,
         timeStamp: new Date().getTime()
       })
       .then(() => {
