@@ -1,0 +1,46 @@
+.Modal {
+  position: absolute;
+  width: 70vw;
+  max-width: 600px;
+  min-height: 50vh;
+  z-index: 2;
+  background: white;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.Modal .ShoppingItem:first-child {
+  margin-top: 1.5rem;
+}
+
+.Modal .ShoppingItem:last-child {
+  margin-bottom: 1.5rem;
+}
+
+.Backdrop {
+  height: 139vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  position: fixed;
+  margin-top: -39vh;
+}
+
+.ShoppingItem {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+  .Name {
+    font-weight: bold;
+  }
+}

@@ -1,6 +1,7 @@
 const initState = {
   plans: [],
-  selectedPlan: ""
+  selectedPlan: "",
+  backdrop: true
 };
 
 const plannerReducer = (state = initState, action) => {
@@ -50,6 +51,12 @@ const plannerReducer = (state = initState, action) => {
     case "UPDATE_PLAN_NAME_ERROR":
       console.log("Error updating plan name", action.err);
       return state;
+    case "TOGGLE_BACKDROP":
+      console.log("Toggling backdrop");
+      return {
+        ...state,
+        backdrop: !state.backdrop
+      };
     default:
       return state;
   }

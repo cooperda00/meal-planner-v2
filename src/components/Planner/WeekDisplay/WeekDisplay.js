@@ -4,15 +4,23 @@ import React, { Component } from "react";
 import styles from "./WeekDisplay.module.scss";
 //Redux
 import { connect } from "react-redux";
-import { updatePlanName } from "../../../store/actions/plannerActions";
+import {
+  updatePlanName,
+  toggleBackdrop
+} from "../../../store/actions/plannerActions";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 //Components
 import DayDisplay from "./DayDisplay/DayDisplay";
+import ShoppingList from "./ShoppingList/ShoppingList";
 
 class WeekDisplay extends Component {
   state = {
     name: "",
     month: "",
-    week: ""
+    week: "",
+    shoppingList: [],
+    modalOpen: false
   };
 
   componentDidMount() {
@@ -36,14 +44,76 @@ class WeekDisplay extends Component {
     });
   };
 
+  toggleModal = () => {
+    this.setState({
+      modalOpen: !this.state.modalOpen
+    });
+  };
+
+  handleGenShoppingList = () => {
+    this.genShoppingList();
+    this.toggleModal();
+  };
+
+  genShoppingList = () => {
+    const plannerRecipes = [];
+    //Put all recipes for the list on an array
+    const week = [...this.props.plan.week];
+    week.forEach(day => {
+      day.meals.forEach(meal => {
+        plannerRecipes.push(meal.name);
+      });
+    });
+    //Remove dupes using a Set
+    const set = new Set(plannerRecipes);
+    const recipeList = Array.from(set);
+    /////////////////////////////////////////////////
+    //Get ingredients for recipe
+    const ingredientsArray = [];
+    const recipes = this.props.recipes;
+    recipes.map(recipe => {
+      recipeList.map(recipeName => {
+        if (recipeName === recipe.name) {
+          recipe.ingredients.forEach(ing => {
+            ingredientsArray.push(ing.name);
+          });
+        }
+      });
+    });
+    /////////////////////////////////////////////////
+    // Create output array
+    const output = [];
+    this.props.pantry.forEach(item => {
+      ingredientsArray.forEach(ing => {
+        if (item.name === ing) {
+          // output.push(`${item.name} : ฿${item.price} per ${item.per}`);
+          output.push(item);
+        }
+      });
+    });
+    this.setState({
+      shoppingList: output,
+      showModal: true
+    });
+  };
+
   render() {
     if (this.props.plan) {
       return (
         <div className={styles.WeekDisplay}>
+          {this.state.modalOpen && (
+            <ShoppingList
+              shoppingList={this.state.shoppingList}
+              toggleModal={this.toggleModal}
+            />
+          )}
           <div className={styles.Header}>
             <div className={styles.Title}>
               <h3>Meal Plan: </h3>
               <h3>{this.props.plan.planName}</h3>
+              <button onClick={this.handleGenShoppingList}>
+                Generate Shopping List
+              </button>
             </div>
 
             <div className={styles.Form}>
@@ -100,15 +170,34 @@ class WeekDisplay extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    uid: state.firebase.auth.uid,
+    pantry: state.firestore.ordered.pantry,
+    recipes: state.firestore.ordered.recipes
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     updatePlanName: (planId, payload) => {
       dispatch(updatePlanName(planId, payload));
+    },
+    toggleBackdrop: () => {
+      dispatch(toggleBackdrop());
     }
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  firestoreConnect(props => {
+    return [
+      { collection: "pantry", where: ["userId", "==", props.uid] },
+      { collection: "recipes", where: ["userId", "==", props.uid] }
+    ];
+  })
 )(WeekDisplay);

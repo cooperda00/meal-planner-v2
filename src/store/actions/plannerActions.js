@@ -107,8 +107,11 @@ export const removeMeal = (planId, payload) => {
 export const setDefaultPlan = () => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     const firestore = getFirestore();
+    const state = getState();
+    console.log(state.firebase.auth.uid);
     firestore
       .collection("plans")
+      .where("userId", "==", state.firebase.auth.uid)
       .orderBy("timeStamp", "desc")
       .limit(1)
       .get()
@@ -181,5 +184,11 @@ export const updatePlanName = (planId, payload) => {
           err
         });
       });
+  };
+};
+
+export const toggleBackdrop = () => {
+  return {
+    type: "TOGGLE_BACKDROP"
   };
 };

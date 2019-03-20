@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 //Components
 import Pantry from "./Pantry";
+import Spinner from "../Spinner/Spinner";
 //Redux
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -35,15 +36,19 @@ class PantryContainer extends Component {
   };
 
   render() {
-    return (
-      <Pantry
-        ingredients={this.props.ingredients}
-        handleAddIngredient={this.handleAddIngredient}
-        handleDeleteIngredient={this.handleDeleteIngredient}
-        handleEditIngredient={this.handleEditIngredient}
-        handleEditIngredientCheckbox={this.handleEditIngredientCheckbox}
-      />
-    );
+    if (this.props.ingredients) {
+      return (
+        <Pantry
+          ingredients={this.props.ingredients}
+          handleAddIngredient={this.handleAddIngredient}
+          handleDeleteIngredient={this.handleDeleteIngredient}
+          handleEditIngredient={this.handleEditIngredient}
+          handleEditIngredientCheckbox={this.handleEditIngredientCheckbox}
+        />
+      );
+    } else {
+      return <Spinner marginTop={"5rem"} />;
+    }
   }
 }
 
