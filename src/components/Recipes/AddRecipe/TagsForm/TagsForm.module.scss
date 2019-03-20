@@ -28,3 +28,9 @@
   color: red;
   font-size: 1.5rem;
 }
+
+@media screen and (max-width: 411px) {
+  input[type="submit"] {
+    max-width: 91px;
+  }
+}

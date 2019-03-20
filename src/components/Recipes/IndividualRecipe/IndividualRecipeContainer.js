@@ -67,17 +67,14 @@ class IndividualRecipeContainer extends React.Component {
       //Price Displays
       const approxPriceAll = (
         <div className={styles.ApproxPrice}>
-          <h3>
-            Cost to buy all ingredients: <span>฿ {getPrice("all")}</span>
-          </h3>
+          <h3>Cost to buy all ingredients:</h3>
+          <p>฿ {getPrice("all")}</p>
         </div>
       );
       const approxPriceRemainder = (
         <div className={styles.ApproxPrice}>
-          <h3>
-            Cost to by missing ingredients:{" "}
-            <span>฿ {getPrice("remainder")}</span>
-          </h3>
+          <h3>Cost to by missing ingredients: </h3>
+          <p>฿ {getPrice("remainder")}</p>
         </div>
       );
 

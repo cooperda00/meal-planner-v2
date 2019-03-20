@@ -44,7 +44,7 @@ class IngredientsForm extends React.Component {
               </li>
             ))}
           </ul>
-          <form onSubmit={this.addIngredient}>
+          <form onSubmit={this.addIngredient} className={styles.Form}>
             <input
               type="text"
               name="name"

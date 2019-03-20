@@ -35,13 +35,14 @@ export default function IngredientsForm(props) {
             </li>
           ))}
         </ul>
-        <form onSubmit={props.handleAddIngredient}>
+        <form onSubmit={props.handleAddIngredient} className={styles.Form}>
           <input
             type="text"
             name="name"
             value={props.value1}
             onChange={props.handleChangeIngredientToAdd}
             required
+            placeholder="Soy Sauce"
           />
           <input
             className={styles.Num}
@@ -50,6 +51,7 @@ export default function IngredientsForm(props) {
             value={props.value2}
             onChange={props.handleChangeIngredientToAdd}
             required
+            placeholder={2}
           />
           <input
             className={styles.Type}
@@ -57,6 +59,7 @@ export default function IngredientsForm(props) {
             name="type"
             value={props.value3}
             onChange={props.handleChangeIngredientToAdd}
+            placeholder="tbsp"
           />
           <input type="submit" value="Add To List" />
         </form>

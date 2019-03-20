@@ -25,10 +25,10 @@ export default function Meal(props) {
   };
   return (
     <div className={styles.Meal}>
-      <div className={styles.MealItem}>
+      <div className={styles.MealName}>
         <p className={getStyle()}>{type}</p>
       </div>
-      <div className={styles.MealItem}>
+      <div className={styles.MealRecipe}>
         <Link to={`/recipes/${id}`}>
           <p>{name}</p>
         </Link>
@@ -39,6 +39,7 @@ export default function Meal(props) {
         weekId={props.weekId}
         name={name}
         type={type}
+        className={styles.MealItem}
       />
     </div>
   );
