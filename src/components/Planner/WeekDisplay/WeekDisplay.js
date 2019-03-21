@@ -85,7 +85,7 @@ class WeekDisplay extends Component {
     const output = [];
     this.props.pantry.forEach(item => {
       ingredientsArray.forEach(ing => {
-        if (item.name === ing) {
+        if (item.name === ing && item.have === false) {
           // output.push(`${item.name} : ฿${item.price} per ${item.per}`);
           output.push(item);
         }

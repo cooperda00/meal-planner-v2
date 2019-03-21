@@ -6,10 +6,17 @@
 
   input {
     height: 2rem;
+    border: 1px solid lightgray;
   }
 
   input[type="submit"] {
     padding: 0 1rem;
+    border: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-weight: bold;
+    background: #ef5350;
+    cursor: pointer;
   }
 
   .Num {
@@ -19,6 +26,11 @@
   .Type {
     width: 5rem;
   }
+}
+
+.AddIngredientsContainer input:nth-child(1) {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .removeBtn {

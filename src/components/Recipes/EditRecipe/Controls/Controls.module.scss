@@ -4,11 +4,13 @@
   justify-content: space-between;
 
   button {
-    width: 4rem;
-    height: 1.7rem;
     border: none;
-    font-weight: bold;
     cursor: pointer;
+    padding: 0.8rem 0.6rem;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: 0.7s;
+    width: 5rem;
   }
 
   .Save {
@@ -16,6 +18,10 @@
   }
 
   .Back {
-    background: lightcoral;
+    background: #ef5350;
+  }
+
+  button:hover {
+    border-radius: 0;
   }
 }

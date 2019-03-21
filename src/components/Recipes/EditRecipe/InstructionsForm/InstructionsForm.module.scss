@@ -32,6 +32,13 @@
 
   input[type="submit"] {
     padding: 0 1rem;
+    padding: 0 1rem;
+    border: none;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    font-weight: bold;
+    background: #ef5350;
+    cursor: pointer;
   }
 }
 
@@ -47,4 +54,8 @@
   margin-top: 1rem;
   min-height: 2rem;
   width: 100%;
+  border: 1px solid lightgray;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  resize: none;
 }

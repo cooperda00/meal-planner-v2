@@ -81,6 +81,11 @@
   button {
     border: none;
     cursor: pointer;
+    padding: 0.8rem 0.6rem;
+    font-weight: bold;
+    border-radius: 15px;
+    transition: 0.7s;
+    width: 5rem;
   }
 
   .Back {
@@ -92,12 +97,16 @@
   }
 
   .Delete {
-    background: coral;
+    background: #ef5350;
   }
 
   .ConfirmDelete {
     background: red;
   }
+}
+
+.Controls button:hover {
+  border-radius: 0;
 }
 
 .ApproxPrice {

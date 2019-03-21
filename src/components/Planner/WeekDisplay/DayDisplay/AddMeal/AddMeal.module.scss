@@ -30,6 +30,7 @@
       display: block;
       width: 200px;
       height: 2rem;
+      border-radius: 15px;
     }
   }
 }
@@ -39,11 +40,23 @@
 
   div {
     position: absolute;
-    right: -5.5rem;
-    top: -2rem;
+    right: -7.2rem;
+    top: -2.7rem;
+    cursor: pointer;
   }
 }
 
 .AddMealSubmit {
   font-size: 1rem;
+  border: none;
+  background: #ef5350;
+  padding: 0.8rem 0.6rem;
+  font-weight: bold;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: 0.7s;
+}
+
+.AddMealSubmit:hover {
+  border-radius: 0;
 }

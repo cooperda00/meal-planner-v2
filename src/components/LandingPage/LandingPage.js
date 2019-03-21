@@ -22,7 +22,7 @@ function LandingPage(props) {
         <h3>How to Use:</h3>
         <p>
           1: Add any ingredients you use to the pantry, including how much they
-          cost. Tick whether you ave in stock or not
+          cost. Tick whether you have in stock or not
         </p>
         <p>
           2: Add recipes you like to the recipes section. The recipe will then
