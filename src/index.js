@@ -1,6 +1,7 @@
 //Modules
 import React from "react";
 import ReactDOM from "react-dom";
+import HttpsRedirect from "react-https-redirect";
 //Components
 import AppRouter from "./Routes/AppRouter";
 //Redux
@@ -38,7 +39,9 @@ const store = createStore(
 store.firebaseAuthIsReady.then(() => {
   const app = (
     <Provider store={store}>
-      <AppRouter />
+      <HttpsRedirect>
+        <AppRouter />
+      </HttpsRedirect>
     </Provider>
   );
   ReactDOM.render(app, document.getElementById("root"));

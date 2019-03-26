@@ -59,15 +59,6 @@ export const signUp = newUser => {
         return state.firebase.auth.uid;
       })
       .then(res => {
-        //Add dummy instruction data to the pantry to guide users initially
-        firestore.collection("pantry").add({
-          userId: res,
-          have: true,
-          name: "",
-          per: "",
-          price: 0,
-          timeStamp: new Date().getTime()
-        });
         //Add Initial Plan
         const db = firestore.collection("plans").doc();
         db.set({
