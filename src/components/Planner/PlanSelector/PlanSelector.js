@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import moment from "moment";
 import uuid4 from "uuid";
 import { changeSelectedPlan } from "../../../store/actions/plannerActions";
 import styles from "./PlanSelector.module.scss";

@@ -48,7 +48,6 @@ class RecipesContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     uid: state.firebase.auth.uid,
     recipes: state.firestore.ordered.recipes

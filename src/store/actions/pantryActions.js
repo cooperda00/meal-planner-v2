@@ -25,9 +25,7 @@ const addPantryItem = (id, name = "", have = true, per = "", price = 0) => {
   };
 };
 
-// export const addPantryItemSpecific = (uid, ) => {
 
-// }
 
 const removePantryItem = id => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
