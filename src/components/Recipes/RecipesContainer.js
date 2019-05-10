@@ -1,13 +1,16 @@
+//Modules
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+//Redux
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
-import Recipes from "./Recipes";
-import { Redirect } from "react-router-dom";
 import {
   changeTagFilter,
   changeFilter
 } from "../../store/actions/recipesActions";
+//Components
+import Recipes from "./Recipes";
 
 class RecipesContainer extends Component {
   state = {

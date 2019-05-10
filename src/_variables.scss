@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Cantata+One|Imprima");
+
+//Colors
+$mainColor: lighten(#a1cf39, 8%);
+$darkMain: darken($mainColor, 20%);
+$lightGray: #dedede;
+$darkGray: darken(#333, 10%);
+$secondaryColor: #ef5350;
+$darkSecondary: darken(#ef5350, 10%);
+
+//Font Sizes
+$smallTitle: 1.2rem;
+$title: 2rem;
+
+//Font Stack
+$fontStack: "Imprima", Helvetica, sans-serif;
+
+//MIXINS
+//Flex
+@mixin flex($dir: null, $just: null, $ali: null) {
+  display: flex;
+  @if $dir != null {
+    flex-direction: $dir;
+  }
+  @if $just != null {
+    justify-content: $just;
+  }
+  @if $ali != null {
+    align-items: $ali;
+  }
+}
+
+//Media Queries
+@mixin min-width($threshold) {
+  @media screen and (min-width: $threshold) {
+    @content;
+  }
+}
+
+@mixin button(
+  $color: $secondaryColor,
+  $border: white,
+  $border2: $darkGray,
+  $borderType: solid,
+  $borderType2: solid
+) {
+  background: $color;
+  border: 1px $borderType $border;
+  cursor: pointer;
+  font-weight: 700;
+  height: 2rem;
+  padding: 0 1rem;
+  transition: 0.3s;
+  width: 100px;
+
+  &:hover {
+    border: 1px $borderType2 $border2;
+  }
+}

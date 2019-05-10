@@ -1,33 +1,23 @@
+//Modules
 import React from "react";
+//Sass
 import styles from "./AddNewWeek.module.scss";
 //Redux
 import { connect } from "react-redux";
 import { addPlan } from "../../../store/actions/plannerActions";
 
-function AddNewWeek(props) {
-  const handleAddNewWeek = () => {
-    props.addPlan(props.userId); //
-  };
-
+const AddNewWeek = ({ userId, addPlan }) => {
   return (
-    <div
-      className={styles.Container}
-      tabIndex="0"
-      onKeyPress={e => {
-        if (e.key === "Enter") {
-          props.addPlan(props.userId);
-        }
+    <button
+      className={styles.AddPlanBtn}
+      onClick={() => {
+        addPlan(userId);
       }}
     >
-      <div className={styles.Add} onClick={handleAddNewWeek}>
-        <div className={styles.CrossContainer}>
-          <div className={styles.Horizontal} />
-          <div className={styles.Vertical} />
-        </div>
-      </div>
-    </div>
+      Create Plan
+    </button>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {

@@ -1,73 +1,50 @@
+@import "../../variables";
+
 .Header {
+  @include flex(row, space-around, center);
+
+  background: $mainColor;
+  border-bottom: 2px solid $darkMain;
   height: 10vh;
   min-height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #ffecb3;
-  border-bottom: 2px solid #cbba83;
+  padding: 0 0.5rem;
 
   h1 {
+    color: $darkGray;
+    font-size: $smallTitle;
     text-align: center;
+  }
+
+  @include min-width(768px) {
+    h1 {
+      font-size: $title;
+    }
   }
 }
 
 .NavContainer {
-  margin-left: 2rem;
-  min-width: 100px;
-  max-width: 500px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-content: space-around;
+  max-width: 500px;
+  min-width: 160px;
+  text-align: center;
+
+  @include min-width(550px) {
+    & {
+      @include flex(row, space-around, center);
+      width: 40%;
+    }
+  }
+
+  @include min-width(768px) {
+    & {
+      font-size: $smallTitle;
+    }
+  }
 }
 
 .Logout {
   cursor: pointer;
-}
-
-// Specific Mobile
-@media only screen and (max-width: 321px) {
-  .Header h1 {
-    font-size: 1.3rem;
-    margin-left: 0.5rem;
-  }
-
-  .NavContainer {
-    min-width: 160px;
-    margin-right: -1rem;
-    margin-left: -0.1rem;
-    font-size: 0.8rem;
-  }
-}
-@media only screen and (max-width: 414px) {
-  .Header h1 {
-    font-size: 1.3rem;
-    margin-left: 0.5rem;
-  }
-
-  .NavContainer {
-    min-width: 160px;
-    margin-right: -1rem;
-    font-size: 0.8rem;
-  }
-}
-
-//Tablet
-@media only screen and (min-width: 768px) {
-  .Header {
-    justify-content: space-around;
-
-    h1 {
-      font-size: 2rem;
-      margin-left: 0;
-    }
-  }
-
-  .NavContainer {
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.2rem;
-    width: 40%;
-  }
 }

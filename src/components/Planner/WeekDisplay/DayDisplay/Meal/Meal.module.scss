@@ -1,24 +1,30 @@
+@import "../../../../../variables";
+
 .Meal {
-  width: 100%;
   display: grid;
   font-size: 1.5rem;
-  grid-template-columns: repeat(3, minmax(100px, 1fr));
   grid-auto-rows: 1fr;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
   margin-bottom: 1rem;
-  // grid-gap: 1rem;
+  width: 100%;
 
   div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex(row, center, center);
   }
 }
 
 .MealRecipe {
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
-  color: navy;
   text-align: center;
+  font-size: 1.4rem;
+}
+
+.MealName {
+  p {
+    padding: 5px;
+    font-size: 1.4rem;
+  }
 }
 
 //MEAL COLORS

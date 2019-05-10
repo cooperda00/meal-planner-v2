@@ -1,7 +1,7 @@
 //Modules
 import React, { Component } from "react";
 import uuid4 from "uuid";
-//CSS
+//Sass
 import styles from "./DayDisplay.module.scss";
 //Components
 import AddMeal from "./AddMeal/AddMeal";

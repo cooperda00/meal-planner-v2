@@ -1,8 +1,12 @@
+//Modules
 import React, { Component } from "react";
-import styles from "./Signup.module.scss";
-import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+//Sass
+import styles from "./Signup.module.scss";
+//Redux
+import { connect } from "react-redux";
 import { signUp } from "../../../store/actions/authActions";
+//Components
 import Spinner from "../../Spinner/Spinner";
 
 class Signup extends Component {
@@ -37,10 +41,11 @@ class Signup extends Component {
 
   render() {
     const { auth, authError } = this.props;
+
     if (auth.uid) return <Redirect to="/pantry" />;
 
     if (this.props.isFetching) {
-      return <Spinner />;
+      return <Spinner marginTop="5rem" />;
     } else {
       return (
         <div className={styles.SignupContainer}>
@@ -48,7 +53,7 @@ class Signup extends Component {
           <form onSubmit={this.handleSubmit}>
             <div className={styles.FormContainer}>
               <label htmlFor="email">
-                Email:
+                <strong>*</strong> Email:
                 <input
                   id="email"
                   type="email"
@@ -60,7 +65,7 @@ class Signup extends Component {
 
             <div className={styles.FormContainer}>
               <label htmlFor="password">
-                Password:
+                <strong>*</strong> Password:
                 <input
                   id="password"
                   type="password"
@@ -72,7 +77,7 @@ class Signup extends Component {
 
             <div className={styles.FormContainer}>
               <label htmlFor="passwordCheck">
-                Password:
+                <strong>*</strong> Check Password:
                 <input
                   id="passwordCheck"
                   type="password"
@@ -84,7 +89,7 @@ class Signup extends Component {
 
             <div className={styles.FormContainer}>
               <label htmlFor="initials">
-                Initials:
+                <strong>*</strong> Initials:
                 <input
                   id="initials"
                   type="text"
@@ -94,7 +99,7 @@ class Signup extends Component {
               </label>
             </div>
 
-            <button>Submit</button>
+            <button className={styles.SignupBtn}>Submit</button>
           </form>
           {authError && <p className={styles.Error}>{authError}</p>}
 

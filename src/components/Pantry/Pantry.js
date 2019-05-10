@@ -11,17 +11,20 @@ import PantryForm from "./PantryForm/PantryForm";
 import { connect } from "react-redux";
 
 const Pantry = props => {
+  console.log(props.ingredients);
   const {
     handleDeleteIngredient,
     handleEditIngredient,
     handleEditIngredientCheckbox
   } = props;
 
+  //Set ingredients when loaded
   let ingredients = [];
   if (props.ingredients) {
     ingredients = [...props.ingredients];
   }
 
+  //Route Guard
   if (!props.auth.uid) {
     return <Redirect to="/" />;
   }
@@ -35,8 +38,11 @@ const Pantry = props => {
           <h3 className={styles.Unit}>Unit</h3>
           <h3 className={styles.Stock}>In Stock</h3>
         </div>
+        <PantryForm />
         {ingredients
-          .sort((a, b) => a.timeStamp - b.timeStamp)
+          .sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          })
           .map(ing => {
             return (
               <PantryItem
@@ -48,7 +54,6 @@ const Pantry = props => {
               />
             );
           })}
-        <PantryForm />
       </div>
     ) : (
       <Spinner />
@@ -56,8 +61,12 @@ const Pantry = props => {
   };
   return (
     <div className={styles.PantryViewContainer}>
-      <div className={styles.TitleAndBtnContainer}>
-        <h1 className={styles.PantryTitle}>Pantry</h1>
+      <div className={styles.TitleContainer}>
+        <h1>Pantry</h1>
+        <p>
+          Add pantry items here. This information will be used by{" "}
+          <strong>Recipes</strong> and <strong>Planner</strong>.
+        </p>
       </div>
       {pantryContainer()}
     </div>

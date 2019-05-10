@@ -1,8 +1,12 @@
+//Modules
 import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
-import styles from "./Header.module.scss";
+import { NavLink, withRouter, Link } from "react-router-dom";
+//Redux
 import { connect } from "react-redux";
 import { signOut } from "../../store/actions/authActions";
+//Sass
+import styles from "./Header.module.scss";
+//Components
 import UserLogo from "./UserLogo/UserLogo";
 
 function Header(props) {
@@ -44,17 +48,19 @@ function Header(props) {
       <NavLink activeClassName="is-active" to="/pantry">
         Pantry
       </NavLink>
-      <NavLink activeClassName="is-active" to="/planner">
-        Planner
-      </NavLink>
       <NavLink activeClassName="is-active" to="/recipes">
         Recipes
+      </NavLink>
+      <NavLink activeClassName="is-active" to="/planner">
+        Planner
       </NavLink>
     </>
   );
   return (
     <div className={styles.Header}>
-      <h1>Meal Planner</h1>
+      <Link to={"/"}>
+        <h1>Meal Planner</h1>
+      </Link>
       <div className={styles.NavContainer}>
         {auth.uid ? loggedInLinks : loggedOutLinks}
       </div>

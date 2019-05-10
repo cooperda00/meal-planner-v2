@@ -1,19 +1,30 @@
+@import "../../../variables";
+
 .TagsContainer {
-  margin-top: 1rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  @include flex(row, center, center);
+
   flex-wrap: wrap;
   flex-grow: 1;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 .Tag {
+  border: 1px solid $secondaryColor;
+  cursor: pointer;
+  font-weight: bold;
   height: 2rem;
   list-style: none;
-  background: #ef5350;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-weight: bold;
   margin: 0.5rem 0.5rem;
-  cursor: pointer;
+  padding: 5px 10px;
+  transition: 0.3s;
+
+  &:hover {
+    background: $secondaryColor;
+    border: 1px solid $darkGray;
+  }
+}
+
+.LoadingTag {
+  list-style: none;
 }

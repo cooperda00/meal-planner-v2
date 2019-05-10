@@ -8,7 +8,7 @@ import RemoveBtn from "../RemoveBtn/RemoveBtn";
 
 export default function Meal(props) {
   const { name, type, id } = props.meal;
-  const style = "";
+
   const getStyle = () => {
     switch (type) {
       case "Breakfast":

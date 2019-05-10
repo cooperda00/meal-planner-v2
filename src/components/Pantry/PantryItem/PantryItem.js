@@ -1,7 +1,7 @@
 //Modules
 import React from "react";
 import AutosizeInput from "react-input-autosize";
-//Styles
+//Sass
 import styles from "./PantryItem.module.scss";
 //Redux
 import { connect } from "react-redux";
@@ -59,7 +59,6 @@ function PantryItem({
           value={name}
           onChange={handleEditIngredient}
           className={nameClass}
-          // placeholder="Soy Sauce"
         />
         <span>฿</span>
         <input
@@ -89,7 +88,7 @@ function PantryItem({
           className={styles.PantryItemSmall}
         />
         <button className={styles.PantryItemDeleteBtn} onClick={handleDelete}>
-          X
+          <strong>-</strong>
         </button>
       </div>
     );

@@ -109,10 +109,10 @@ class WeekDisplay extends Component {
           )}
           <div className={styles.Header}>
             <div className={styles.Title}>
-              <h3>Meal Plan: </h3>
-              <h3>{this.props.plan.planName}</h3>
+              <h3>Meal Plan: {this.props.plan.planName}</h3>
+
               <button onClick={this.handleGenShoppingList}>
-                Generate Shopping List
+                Shopping List
               </button>
             </div>
 

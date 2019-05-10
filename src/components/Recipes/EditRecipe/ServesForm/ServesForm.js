@@ -1,6 +1,8 @@
+//Modules
 import React from "react";
-import styles from "./ServesForm.module.scss";
 import AutosizeInput from "react-input-autosize";
+//Sass
+import styles from "./ServesForm.module.scss";
 
 export default function ServesForm(props) {
   return (

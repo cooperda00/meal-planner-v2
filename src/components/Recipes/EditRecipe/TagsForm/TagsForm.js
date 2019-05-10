@@ -11,7 +11,9 @@ export default function TagsForm(props) {
   return (
     <>
       <div className={styles.AddTagsContainer}>
-        <h3>Tags:</h3>
+        <h3>
+          <span className={styles.Manditory}>* </span>Tags:
+        </h3>
         <ul>
           {props.tags.map(tag => (
             <li key={uuid4()}>

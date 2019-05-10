@@ -1,11 +1,13 @@
+//Modules
 import React from "react";
 import uuid4 from "uuid";
+//Sass
 import styles from "./TagsDisplay.module.scss";
+//Redux
 import { connect } from "react-redux";
 import { changeTagFilter } from "../../../store/actions/recipesActions";
-import Spinner from "../../Spinner/Spinner";
 
-function TagsDisplay(props) {
+const TagsDisplay = props => {
   const handleClick = e => {
     props.changeTagFilter(e.target.innerHTML);
   };
@@ -40,15 +42,17 @@ function TagsDisplay(props) {
                 {tag}
               </li>
             );
+          } else {
+            return null;
           }
         })}
       </>
     ) : (
-      <Spinner />
+      <li className={styles.LoadingTag}>Tags loading . . .</li>
     );
 
   return <ul className={styles.TagsContainer}>{tags}</ul>;
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {

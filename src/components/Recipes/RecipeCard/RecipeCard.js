@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import uuid4 from "uuid";
-//CSS
+//Sass
 import styles from "./RecipeCard.module.scss";
 
 export default function RecipeCard(props) {

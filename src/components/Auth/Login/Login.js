@@ -1,3 +1,4 @@
+//Modules
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 //Styles
@@ -33,7 +34,7 @@ class Login extends Component {
     }
 
     if (this.props.isFetching) {
-      return <Spinner />;
+      return <Spinner marginTop="5rem" />;
     } else {
       return (
         <div className={styles.LoginContainer}>
@@ -59,7 +60,7 @@ class Login extends Component {
 
             {authError && <p>{authError}</p>}
 
-            <button>Submit</button>
+            <button className={styles.LoginBtn}>Submit</button>
           </form>
         </div>
       );

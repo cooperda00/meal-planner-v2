@@ -1,13 +1,34 @@
+@import "../../variables";
+
 .RecipesContainer {
+  margin-top: 2rem;
   width: 100vw;
 }
 
 .TitleAndControlsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex(column, flex-start, center);
 
   margin-top: 1rem;
+}
+
+.Help {
+  margin-top: 1rem;
+  max-width: 500px;
+  text-align: center;
+  padding: 0 1rem;
+
+  strong {
+    color: $secondaryColor;
+  }
+}
+
+.Controls {
+  @include flex(row, center, center);
+
+  margin-top: 1rem;
+  max-width: 500px;
+  padding: 0 1rem;
+  width: 100%;
 }
 
 .RecipesGrid {
@@ -16,24 +37,16 @@
   grid-auto-rows: auto;
   justify-items: center;
   grid-gap: 1rem;
-}
 
-//Tablet
-@media only screen and (min-width: 750px) {
-  .RecipesGrid {
+  @include min-width(750px) {
     grid-template-columns: 1fr 1fr;
   }
-}
 
-//Desktop
-@media only screen and (min-width: 1000px) {
-  .RecipesGrid {
+  @include min-width(1100px) {
     grid-template-columns: 1fr 1fr 1fr;
   }
-}
 
-@media only screen and (min-width: 1300px) {
-  .RecipesGrid {
+  @include min-width(1300px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

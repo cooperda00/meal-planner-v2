@@ -1,8 +1,10 @@
+//Modules
 import React from "react";
-import styles from "./NameForm.module.scss";
 import AutosizeInput from "react-input-autosize";
+//Sass
+import styles from "./NameForm.module.scss";
 
-export default function NameForm(props) {
+const NameForm = props => {
   return (
     <>
       <h3>
@@ -18,4 +20,6 @@ export default function NameForm(props) {
       />
     </>
   );
-}
+};
+
+export default NameForm;

@@ -1,9 +1,12 @@
+//Modules
 import React, { Component } from "react";
+import uuid4 from "uuid";
+//Redux
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import uuid4 from "uuid";
 import { changeSelectedPlan } from "../../../store/actions/plannerActions";
+//Sass
 import styles from "./PlanSelector.module.scss";
 
 class PlanSelector extends Component {

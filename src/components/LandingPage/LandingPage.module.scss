@@ -1,45 +1,49 @@
-.LandingPageContainer {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin-top: 3rem;
+@import "../../variables";
 
-  h1,
-  h2 {
+.LandingPageContainer {
+  @include flex(column, flex-start, center);
+
+  margin-top: 3rem;
+  min-height: 90vh;
+
+  h1 {
     margin-bottom: 1rem;
-    text-align: center;
     padding: 1rem;
+    text-align: center;
   }
 }
 
 .BtnContainer {
-  button {
-    width: 100px;
+  .LandingBtn {
+    background: $secondaryColor;
+    border: 1px solid white;
+    cursor: pointer;
+    font-weight: 700;
+    height: 2rem;
     margin: 0 1rem;
     padding: 0 1rem;
-    height: 2rem;
-    font-weight: 700;
-    border: none;
-    background: #ef5350;
-    border-radius: 15px;
-    cursor: pointer;
-    transition: 0.8s;
-  }
+    transition: 0.3s;
+    width: 100px;
 
-  button:hover {
-    border-radius: 0;
+    &:hover {
+      border: 1px solid $darkGray;
+    }
   }
 }
 
 .Help {
+  @include flex(column, flex-start, flex-start);
+
   margin-top: 2rem;
   padding: 2rem;
 
   h3,
   p {
-    margin-bottom: 0.5rem;
-    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  h3,
+  strong {
+    color: $secondaryColor;
   }
 }

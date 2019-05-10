@@ -1,6 +1,8 @@
+//Modules
 import React from "react";
-import styles from "./TagsForm.module.scss";
 import uuid4 from "uuid";
+//Sass
+import styles from "./TagsForm.module.scss";
 
 class TagsForm extends React.Component {
   addTag = e => {

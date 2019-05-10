@@ -1,34 +1,35 @@
+@import "../../../variables";
+
 .PantryItem {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex(row, space-between, center);
+
   padding: 5px 10px 5px 0;
+  width: 100%;
 }
 
 .PantryItemDeleteBtn {
-  width: 5px;
   background: transparent;
   border: none;
   cursor: pointer;
+  width: 5px;
 }
 
 .PantryItemName {
   width: 100px;
-}
 
-.PantryItemName input {
-  text-align: center;
-  max-width: 100px;
-  border: none;
+  input {
+    border: none;
+    max-width: 100px;
+    text-align: center;
+  }
 }
 
 .PantryItemSmall {
   border: none;
-  width: 40px;
   text-align: center;
+  width: 40px;
 }
 
 .Underline {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid $secondaryColor;
 }

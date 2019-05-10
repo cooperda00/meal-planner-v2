@@ -1,15 +1,16 @@
+@import "../../../variables";
+
 .RecipeFilterContainer {
-  margin-top: 1rem;
-}
+  min-width: 200px;
 
-.RecipeFilterContainer label {
-  font-weight: bold;
-}
+  label {
+    font-weight: bold;
+  }
 
-.FilterInput {
-  margin-left: 1rem;
-  border: 1px solid #cbba83;
-  height: 1.5rem;
-  width: 10rem;
-  border-radius: 15px;
+  .FilterInput {
+    display: block;
+    margin: 0.5rem 0;
+    height: 2rem;
+    width: 100%;
+  }
 }

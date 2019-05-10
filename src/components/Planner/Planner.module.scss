@@ -1,6 +1,26 @@
-.ButtonContainer {
-  margin: 0 auto;
-  width: 50%;
-  display: flex;
-  justify-content: space-evenly;
+@import "../../variables";
+
+.PlannerContainer {
+  @include flex(column, flex-start, center);
+
+  margin-top: 2rem;
+
+  strong {
+    color: $secondaryColor;
+  }
+
+  p {
+    margin: 1rem 0;
+    max-width: 500px;
+    padding: 0 1rem;
+    text-align: center;
+  }
+}
+
+.Controls {
+  @include flex(row, space-around, center);
+  width: 100%;
+  max-width: 500px;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid $lightGray;
 }

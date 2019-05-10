@@ -90,7 +90,7 @@ class IndividualRecipeContainer extends React.Component {
         />
       );
     } else {
-      return <Spinner />;
+      return <Spinner marginTop="5rem" />;
     }
   }
 }
@@ -99,7 +99,8 @@ class IndividualRecipeContainer extends React.Component {
 const mapStateToProps = state => {
   return {
     recipes: state.firestore.ordered.recipes,
-    pantry: state.firestore.ordered.pantry
+    pantry: state.firestore.ordered.pantry,
+    uid: state.firebase.auth.uid
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -121,8 +122,8 @@ export default compose(
         doc: props.match.params.id
       },
       {
-        collection: "pantry"
-        //add rule for user id to match props.uid
+        collection: "pantry",
+        where: ["userId", "==", props.uid]
       }
     ];
   })

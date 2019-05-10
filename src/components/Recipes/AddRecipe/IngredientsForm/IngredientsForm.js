@@ -1,6 +1,8 @@
+//Modules
 import React from "react";
-import styles from "./IngredientsForm.module.scss";
 import uuid4 from "uuid";
+//Sass
+import styles from "./IngredientsForm.module.scss";
 
 class IngredientsForm extends React.Component {
   addIngredient = e => {
@@ -61,7 +63,7 @@ class IngredientsForm extends React.Component {
               type="number"
               name="amount"
               min="0"
-              step="0.1"
+              step="0.01"
               value={this.props.value2}
               onChange={this.props.handleChangeIngredientToAdd}
               required

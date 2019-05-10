@@ -1,6 +1,8 @@
+//Modules
 import React from "react";
-import styles from "./ImgUrlForm.module.scss";
 import AutosizeInput from "react-input-autosize";
+//Sass
+import styles from "./ImgUrlForm.module.scss";
 
 export default function ImgUrlForm(props) {
   return (

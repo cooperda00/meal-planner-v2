@@ -15,7 +15,7 @@ import PlannerContainer from "../components/Planner/PlannerContainer";
 import Page404 from "../components/Page404/Page404";
 //CSS
 import styles from "./AppRouter.module.scss";
-import "../base.css";
+import "../base.scss";
 
 const AppRouter = () => (
   <BrowserRouter>

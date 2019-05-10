@@ -1,4 +1,6 @@
+//Modules
 import React from "react";
+//Styles
 import styles from "./Controls.module.scss";
 
 export default function Controls(props) {

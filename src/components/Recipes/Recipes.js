@@ -1,5 +1,8 @@
+//Modules
 import React from "react";
+//Sass
 import styles from "./Recipes.module.scss";
+//Redux
 import { connect } from "react-redux";
 //Components
 import Spinner from "../Spinner/Spinner";
@@ -8,14 +11,22 @@ import RecipeCard from "./RecipeCard/RecipeCard";
 import TagsDisplay from "./TagsDisplay/TagsDisplay";
 import RecipesFilter from "./RecipesFilter/RecipesFilter";
 
-function Recipes({ recipes, uid, tags, filter, tagFilter }) {
+const Recipes = ({ recipes, uid, tags, filter, tagFilter }) => {
   return (
     <div>
       <div className={styles.RecipesContainer}>
         <div className={styles.TitleAndControlsContainer}>
           <h1>Recipes</h1>
-          <RecipeAddBtn />
-          <RecipesFilter />
+          <p className={styles.Help}>
+            Add and track your favorite recipes here. <strong>Recipes</strong>{" "}
+            will reference ingredients you have in <strong>Pantry</strong> and
+            can be used to create meal plans in <strong>Planner</strong>.
+          </p>
+          <div className={styles.Controls}>
+            <RecipeAddBtn />
+            <RecipesFilter />
+          </div>
+
           <TagsDisplay tags={tags} />
         </div>
 
@@ -67,7 +78,7 @@ function Recipes({ recipes, uid, tags, filter, tagFilter }) {
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {

@@ -1,5 +1,8 @@
+//Modules
 import React from "react";
+//Sass
 import styles from "./DeleteWeek.module.scss";
+//Redux
 import { connect } from "react-redux";
 import {
   deletePlan,
@@ -9,31 +12,18 @@ import {
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
-function DeleteWeek(props) {
+const DeleteWeek = props => {
   const handleDeleteWeek = () => {
     props.deletePlan(props.planId);
     props.setDefaultPlan();
   };
 
   return (
-    <div
-      className={styles.Container}
-      tabIndex="0"
-      onKeyPress={e => {
-        if (e.key === "Enter") {
-          props.deletePlan(props.planId);
-          props.setDefaultPlan();
-        }
-      }}
-    >
-      <div className={styles.Add} onClick={handleDeleteWeek}>
-        <div className={styles.CrossContainer}>
-          <div className={styles.Horizontal} />
-        </div>
-      </div>
-    </div>
+    <button className={styles.DeletePlanBtn} onClick={handleDeleteWeek}>
+      Delete Plan
+    </button>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {

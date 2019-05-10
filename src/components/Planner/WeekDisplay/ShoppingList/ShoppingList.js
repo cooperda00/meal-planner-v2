@@ -1,5 +1,7 @@
+//Modules
 import React from "react";
 import uuid4 from "uuid";
+//Sass
 import styles from "./ShoppingList.module.scss";
 
 export default function ShoppingList(props) {

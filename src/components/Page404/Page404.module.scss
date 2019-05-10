@@ -1,0 +1,20 @@
+@import "../../variables";
+
+.Page404 {
+  @include flex(column, center, center);
+
+  height: 80vh;
+
+  h1 {
+    text-align: center;
+  }
+
+  .PathName {
+    color: $secondaryColor;
+  }
+
+  .Link {
+    color: blue;
+    cursor: pointer;
+  }
+}

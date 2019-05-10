@@ -1,23 +1,22 @@
+@import "../../../../variables";
+
 .AddInstructionsContainer {
+  @include flex(column, flex-start, flex-start);
+
   margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   ol {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex(column, flex-start, flex-start);
 
     li {
-      text-align: center;
-      max-width: 300px;
+      margin-left: 2rem;
+      max-width: 250px;
       overflow-wrap: break-word;
-    }
-  }
 
-  h3 {
-    text-align: center;
+      @include min-width(321px) {
+        max-width: 300px;
+      }
+    }
   }
 
   form {
@@ -31,31 +30,37 @@
   }
 
   input[type="submit"] {
-    padding: 0 1rem;
-    padding: 0 1rem;
+    background: $secondaryColor;
     border: none;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    font-weight: bold;
-    background: #ef5350;
     cursor: pointer;
+    font-weight: bold;
+    padding: 0 1rem;
   }
 }
 
 .removeBtn {
-  margin-left: 0.5rem;
-  font-weight: 500;
-  font-size: 1.5rem;
-  cursor: pointer;
   color: red;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
 }
 
 .TextArea {
+  border: 1px solid lightgray;
   margin-top: 1rem;
   min-height: 2rem;
-  width: 100%;
-  border: 1px solid lightgray;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
   resize: none;
+  width: 100%;
+  max-width: 180px;
+
+  @include min-width(321px) {
+    max-width: 200px;
+  }
+}
+
+.Manditory {
+  color: $secondaryColor;
+  font-size: 1.5rem;
+  font-weight: bold;
 }

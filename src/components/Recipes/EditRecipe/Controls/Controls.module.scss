@@ -1,27 +1,15 @@
-.Controls {
-  width: 86%;
-  display: flex;
-  justify-content: space-between;
+@import "../../../../variables";
 
-  button {
-    border: none;
-    cursor: pointer;
-    padding: 0.8rem 0.6rem;
-    font-weight: bold;
-    border-radius: 15px;
-    transition: 0.7s;
-    width: 5rem;
-  }
+.Controls {
+  @include flex(row);
+  width: 100%;
 
   .Save {
-    background: lightgreen;
+    @include button(lightgreen);
+    margin-right: 1rem;
   }
 
   .Back {
-    background: #ef5350;
-  }
-
-  button:hover {
-    border-radius: 0;
+    @include button();
   }
 }

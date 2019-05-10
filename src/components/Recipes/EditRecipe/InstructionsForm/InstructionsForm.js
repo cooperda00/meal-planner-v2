@@ -1,7 +1,9 @@
+//Modules
 import React from "react";
 import uuid4 from "uuid";
-import styles from "./InstructionsForm.module.scss";
 import Textarea from "react-textarea-autosize";
+//Sass
+import styles from "./InstructionsForm.module.scss";
 
 export default function InstructionsForm(props) {
   const handleRemove = (type, e) => {
@@ -10,7 +12,10 @@ export default function InstructionsForm(props) {
   };
   return (
     <div className={styles.AddInstructionsContainer}>
-      <h3>Instructions:</h3>
+      <h3>
+        {" "}
+        <span className={styles.Manditory}>* </span>Instructions:
+      </h3>
       <ol>
         {props.instructions.map(ins => (
           <li key={uuid4()}>

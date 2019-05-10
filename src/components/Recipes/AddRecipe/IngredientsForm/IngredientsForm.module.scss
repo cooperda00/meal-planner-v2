@@ -1,7 +1,8 @@
+@import "../../../../variables";
+
 .AddIngredientsContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex(column, center, flex-start);
+
   margin-bottom: 1rem;
 
   input {
@@ -14,13 +15,11 @@
   }
 
   input[type="submit"] {
-    padding: 0 1rem;
-    font-weight: 700;
+    background: $secondaryColor;
     border: none;
-    background: #ef5350;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
     cursor: pointer;
+    font-weight: 700;
+    padding: 0 1rem;
   }
 
   .Num {
@@ -30,11 +29,21 @@
   .Type {
     width: 5rem;
   }
+
+  ul {
+    li {
+      margin-left: 2rem;
+      max-width: 250px;
+      overflow-wrap: break-word;
+
+      @include min-width(321px) {
+        max-width: 300px;
+      }
+    }
+  }
 }
 
 .AddIngredientsContainer input:nth-child(1) {
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
   border-right: none;
 }
 
@@ -43,25 +52,23 @@
 }
 
 .removeBtn {
-  margin-left: 0.5rem;
-  font-weight: 500;
-  font-size: 1.5rem;
-  cursor: pointer;
   color: red;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
 }
 
 .Manditory {
-  font-weight: bold;
-  color: red;
+  color: $secondaryColor;
   font-size: 1.5rem;
+  font-weight: bold;
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 411px) {
   .Form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    @include flex(column, flex-start, center);
+    width: 80vw;
     input {
       margin-bottom: 0.6rem;
     }

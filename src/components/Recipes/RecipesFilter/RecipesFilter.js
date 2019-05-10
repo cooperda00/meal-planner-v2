@@ -1,9 +1,12 @@
+//Modules
 import React from "react";
+//Sass
 import styles from "./RecipesFilter.module.scss";
+//Redux
 import { connect } from "react-redux";
 import { changeFilter } from "../../../store/actions/recipesActions";
 
-function RecipesFilter(props) {
+const RecipesFilter = props => {
   const handleFilterRecipes = e => {
     props.changeFilter(e.target.value);
   };
@@ -20,7 +23,7 @@ function RecipesFilter(props) {
       </label>
     </div>
   );
-}
+};
 
 const mapDispatchToProps = dispatch => {
   return {

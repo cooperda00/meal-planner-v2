@@ -1,8 +1,11 @@
+//Modules
 import React, { Component } from "react";
-import styles from "./PantryForm.module.scss";
 import AutosizeInput from "react-input-autosize";
+//Redux
 import { connect } from "react-redux";
 import { addPantryItem } from "../../../store/actions/pantryActions";
+//Sass
+import styles from "./PantryForm.module.scss";
 
 class PantryForm extends Component {
   state = {
@@ -13,10 +16,6 @@ class PantryForm extends Component {
     namePlaceholder: true,
     perPlaceholder: true
   };
-
-  componentDidMount() {
-    // this.nameInput.focus();
-  }
 
   handleFocus = e => {
     if (e.target.id === "name") {

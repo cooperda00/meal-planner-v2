@@ -1,6 +1,8 @@
+//Modules
 import React from "react";
-import styles from "./IngredientsForm.module.scss";
 import uuid4 from "uuid";
+//Sass
+import styles from "./IngredientsForm.module.scss";
 
 export default function IngredientsForm(props) {
   const handleRemove = (type, e) => {
@@ -11,7 +13,10 @@ export default function IngredientsForm(props) {
   return (
     <>
       <div className={styles.AddIngredientsContainer}>
-        <h3>Ingredients:</h3>
+        <h3>
+          {" "}
+          <span className={styles.Manditory}>* </span>Ingredients:
+        </h3>
         <ul>
           {props.ingredients.map(ing => (
             <li key={uuid4()}>

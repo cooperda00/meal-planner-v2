@@ -19,9 +19,15 @@ export default function Planner(props) {
     });
   }
   return (
-    <div>
-      <PlanSelector />
-      <div className={styles.ButtonContainer}>
+    <div className={styles.PlannerContainer}>
+      <h1>Planner</h1>
+      <p>
+        Create and name a new plan or select an old one. Add{" "}
+        <strong>Recipes</strong> for each day, then generate a shopping list
+        based on which <strong>Pantry</strong> items are out of stock.
+      </p>
+      <div className={styles.Controls}>
+        <PlanSelector />
         <AddNewWeek />
         <DeleteWeek />
       </div>

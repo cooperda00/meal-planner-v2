@@ -1,7 +1,9 @@
+//Modules
 import React from "react";
 import uuid4 from "uuid";
-import styles from "./InstructionsForm.module.scss";
 import AutosizeInput from "react-input-autosize";
+//Sass
+import styles from "./InstructionsForm.module.scss";
 
 class InstructionsForm extends React.Component {
   addInstruction = e => {

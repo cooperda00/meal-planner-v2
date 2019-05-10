@@ -7,8 +7,6 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { addMeal } from "../../../../../store/actions/plannerActions";
-//Components
-import Spinner from "../../../../Spinner/Spinner";
 
 class AddMeal extends Component {
   state = {
